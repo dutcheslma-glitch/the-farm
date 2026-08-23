@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/the-farm-design-system-carousels-04812aff-f0e9-464c-988b-65181a0ebf41/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/the-farm-design-system-carousels-04812aff-f0e9-464c-988b-65181a0ebf41/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/the-farm-design-system-carousels-04812aff-f0e9-464c-988b-65181a0ebf41/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/the-farm-design-system-carousels-04812aff-f0e9-464c-988b-65181a0ebf41/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/the-farm-design-system-carousels-04812aff-f0e9-464c-988b-65181a0ebf41/styles.css">
+  <script src="_ds/the-farm-design-system-carousels-04812aff-f0e9-464c-988b-65181a0ebf41/_ds_bundle.js"></script>
+  <style>
+    body{margin:0;background:var(--ivory);-webkit-font-smoothing:antialiased}
+    a{color:var(--maroon);text-decoration:none}
+    a:hover{color:var(--gold-deep)}
+    *{box-sizing:border-box}
+    ::-webkit-scrollbar{width:9px}
+    ::-webkit-scrollbar-thumb{background:var(--beige-deep);border-radius:9px}
+  </style>
+</helmet>
+<div style="display:flex;min-height:100vh;font-family:var(--font-sans);color:var(--ink)">
+
+  <aside style="{{ rail.aside }}">
+    <div style="{{ rail.brand }}">
+      <a href="#" onClick="{{ goHome }}" style="{{ rail.wordmark }}">
+        <span style="font:400 19px/1 var(--font-serif);color:var(--ivory)">{{ rail.mark }}</span>
+        <span style="{{ rail.script }}">Progress</span>
+      </a>
+      <a href="#" onClick="{{ rail.toggle }}" title="{{ rail.toggleTitle }}" style="{{ rail.toggleStyle }}" style-hover="background:rgba(216,203,190,.18);color:var(--ivory)">{{ rail.caret }}</a>
+    </div>
+
+    <nav style="display:flex;flex-direction:column;gap:2px;padding:18px 0 0">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+        <a href="#" onClick="{{ n.go }}" title="{{ n.label }}" style="{{ n.style }}" style-hover="background:rgba(216,203,190,.1);color:var(--ivory)">
+          <span style="{{ rail.numStyle }}">{{ n.num }}</span>
+          <span style="{{ rail.labelStyle }}">{{ n.label }}</span>
+        </a>
+      </sc-for>
+    </nav>
+
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px">
+      <a href="#" style="{{ rail.libBtn }}" style-hover="background:var(--beige-deep);color:var(--ink)">{{ rail.libLabel }}</a>
+      <div style="{{ rail.meta }}">Updated August 22, 2026<br>Month two of the partnership</div>
+    </div>
+  </aside>
+
+  <main style="flex:1;min-width:0;padding:32px 44px 80px;max-width:1240px">
+
+    <sc-if value="{{ isNow }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px">
+          <div>
+            <div style="font:700 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)">Month two · updated August 22, 2026</div>
+            <h1 style="font:400 34px/1.1 var(--font-serif);letter-spacing:-.02em;margin:12px 0 0">What's new.</h1>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--beige);border-top:3px solid var(--maroon);border-radius:14px;box-shadow:0 2px 8px rgba(46,38,34,.07);padding:20px 24px 8px;margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <div style="font:700 10px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--maroon)">Checklist</div>
+            <div style="flex:1;min-width:120px;max-width:220px;height:4px;border-radius:999px;background:var(--cream);overflow:hidden">
+              <div style="{{ tasks.barStyle }}"></div>
+            </div>
+            <div style="font:400 12px/1 var(--font-sans);color:var(--ink-faint)">{{ tasks.progress }}</div>
+            <a href="#" onClick="{{ tasks.toggleAdd }}" style="margin-left:auto;font:700 9.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase">{{ tasks.addLabel }}</a>
+          </div>
+          <div style="display:grid;grid-template-columns:26px 1fr 190px 92px;gap:14px;align-items:center;padding:14px 2px 8px;margin-top:10px;border-bottom:1px solid var(--cream)">
+            <span></span>
+            <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">Task</span>
+            <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">Assigned to</span>
+            <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">Due</span>
+          </div>
+          <div style="{{ tasks.addRowStyle }}">
+            <span style="width:20px;height:20px;border-radius:5px;border:1.5px dashed var(--beige-deep)"></span>
+            <input value="{{ tasks.draftTitle }}" onChange="{{ tasks.setTitle }}" placeholder="What needs doing?" style="min-width:0;padding:9px 12px;border-radius:7px;border:1px solid var(--beige);background:#fff;font:400 14px/1 var(--font-sans);color:var(--ink);outline:none">
+            <select value="{{ tasks.draftWho }}" onChange="{{ tasks.setWho }}" style="padding:9px 10px;border-radius:7px;border:1px solid var(--beige);background:#fff;font:400 13px/1 var(--font-sans);color:var(--ink)">
+              <sc-for list="{{ tasks.people }}" as="p" hint-placeholder-count="6">
+                <option value="{{ p.id }}">{{ p.name }}</option>
+              </sc-for>
+            </select>
+            <div style="display:flex;gap:6px;align-items:center">
+              <input value="{{ tasks.draftDue }}" onChange="{{ tasks.setDue }}" placeholder="Sep 1" style="width:64px;min-width:0;padding:9px 8px;border-radius:7px;border:1px solid var(--beige);background:#fff;font:400 12px/1 var(--font-sans);color:var(--ink);outline:none">
+              <a href="#" onClick="{{ tasks.add }}" title="Add task" style="{{ tasks.addBtnStyle }}">＋</a>
+            </div>
+          </div>
+          <sc-for list="{{ tasks.rows }}" as="t" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:26px 1fr 190px 92px;gap:14px;align-items:center;padding:12px 2px;border-bottom:1px solid var(--ivory)" style-hover="background:var(--ivory)">
+              <a href="#" onClick="{{ t.toggle }}" title="Mark done" style="{{ t.boxStyle }}">{{ t.mark }}</a>
+              <div style="{{ t.textStyle }}">{{ t.title }}</div>
+              <div style="position:relative">
+                <a href="#" onClick="{{ t.openMenu }}" style="{{ t.chipStyle }}" style-hover="border-color:var(--beige-deep)">
+                  <span style="{{ t.avatarStyle }}">{{ t.initials }}</span>
+                  <span style="font:400 12.5px/1 var(--font-sans);color:var(--ink)">{{ t.who }}</span>
+                  <span style="margin-left:auto;font-size:9px;color:var(--ink-faint)">▾</span>
+                </a>
+                <div style="{{ t.menuStyle }}">
+                  <sc-for list="{{ t.options }}" as="o">
+                    <a href="#" onClick="{{ o.pick }}" style="{{ o.style }}" style-hover="background:var(--ivory)">
+                      <span style="{{ o.avatarStyle }}">{{ o.initials }}</span>
+                      <span style="font:400 12.5px/1 var(--font-sans);color:var(--ink)">{{ o.name }}</span>
+                    </a>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="{{ t.dueStyle }}">{{ t.due }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-bottom:26px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px">
+              <div style="font:700 10px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)">The log</div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="font:400 11px/1 var(--font-sans);color:var(--ink-faint)">{{ feedCount }}</div>
+                <div style="display:flex;gap:3px;padding:3px;background:var(--cream);border-radius:999px">
+                  <sc-for list="{{ logModes }}" as="m" hint-placeholder-count="2">
+                    <a href="#" onClick="{{ m.go }}" style="{{ m.style }}">{{ m.label }}</a>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div style="{{ calWrap }}">
+              <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;box-shadow:0 2px 8px rgba(46,38,34,.07);padding:18px 20px 20px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+                  <div style="font:400 21px/1 var(--font-serif)">{{ cal.title }}</div>
+                  <div style="display:flex;gap:6px">
+                    <a href="#" onClick="{{ cal.prev }}" title="Previous month" style="width:28px;height:28px;border-radius:999px;border:1px solid var(--beige);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ink-soft)" style-hover="background:var(--maroon-tint);color:var(--maroon)">‹</a>
+                    <a href="#" onClick="{{ cal.next }}" title="Next month" style="width:28px;height:28px;border-radius:999px;border:1px solid var(--beige);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ink-soft)" style-hover="background:var(--maroon-tint);color:var(--maroon)">›</a>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:6px">
+                  <sc-for list="{{ cal.dows }}" as="d" hint-placeholder-count="7">
+                    <div style="font:700 8.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);text-align:center;padding:6px 0">{{ d }}</div>
+                  </sc-for>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px">
+                  <sc-for list="{{ cal.cells }}" as="c" hint-placeholder-count="35">
+                    <div style="{{ c.style }}">
+                      <div style="{{ c.numStyle }}">{{ c.day }}</div>
+                      <div style="display:flex;flex-direction:column;gap:3px;margin-top:5px">
+                        <sc-for list="{{ c.items }}" as="i">
+                          <a href="#" onClick="{{ i.go }}" title="{{ i.title }}" style="{{ i.chipStyle }}">{{ i.short }}</a>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--cream)">
+                  <sc-for list="{{ cal.legend }}" as="l" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:6px">
+                      <span style="{{ l.dot }}"></span>
+                      <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)">{{ l.kind }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div style="{{ listWrap }}">
+            <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;box-shadow:0 2px 8px rgba(46,38,34,.07);padding:6px 20px">
+              <sc-for list="{{ feed }}" as="f" hint-placeholder-count="8">
+                <div style="display:grid;grid-template-columns:auto auto minmax(170px,1fr) auto;gap:8px 14px;align-items:center;padding:13px 2px;border-bottom:1px solid var(--ivory)">
+                  <span style="font:700 9px/1.3 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap">{{ f.date }}</span>
+                  <span style="{{ f.kindStyle }}">{{ f.kind }}</span>
+                  <span style="font:400 14.5px/1.4 var(--font-sans);color:var(--ink);min-width:0">{{ f.title }}</span>
+                  <a href="#" onClick="{{ f.go }}" style="font:700 9px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap">{{ f.link }} →</a>
+                </div>
+              </sc-for>
+                    </div>
+            </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start">
+          <div style="min-width:0;flex:1 1 500px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:14px">
+          <div style="background:var(--maroon);border-radius:14px;padding:26px 28px;display:flex;flex-direction:column;justify-content:space-between;min-height:230px">
+            <div>
+              <div style="font:700 10px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(247,242,234,.6)">Daily reach</div>
+              <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px">
+                <span style="font:400 66px/1 var(--font-serif);color:var(--ivory)">273</span>
+                <span style="font:400 15px/1 var(--font-sans);color:rgba(247,242,234,.65)">/day</span>
+              </div>
+              <div style="display:inline-block;margin-top:14px;padding:6px 12px;border-radius:999px;background:rgba(247,242,234,.14);font:700 10px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--beige)">{{ heroChip }}</div>
+            </div>
+            <svg viewBox="0 0 260 44" preserveAspectRatio="none" style="width:100%;height:44px;margin-top:16px;display:block">
+              <polyline points="{{ spark }}" fill="none" stroke="#D8CBBE" stroke-width="2" stroke-linejoin="round"></polyline>
+            </svg>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:22px 26px 12px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <div style="font:400 20px/1.2 var(--font-serif)">Accounts reached per day</div>
+              <div style="font:400 11px/1 var(--font-sans);color:var(--ink-faint)">1,911 this week · hover a day</div>
+            </div>
+            <div style="position:relative;margin-top:10px">
+              <svg viewBox="0 0 620 220" style="width:100%;display:block;overflow:visible">
+                <line x1="40" y1="196" x2="600" y2="196" stroke="#EDE3D4" stroke-width="1"></line>
+                <line x1="40" y1="{{ chart.yBase }}" x2="600" y2="{{ chart.yBase }}" stroke="#C4B4A3" stroke-width="1" stroke-dasharray="3 4"></line>
+                <line x1="40" y1="{{ chart.yPace }}" x2="600" y2="{{ chart.yPace }}" stroke="#6F7355" stroke-width="1" stroke-dasharray="3 4"></line>
+                <text x="44" y="{{ chart.yBaseT }}" style="font:400 9px var(--font-sans);fill:#8B7F73">25 baseline</text>
+                <text x="44" y="{{ chart.yPaceT }}" style="font:400 9px var(--font-sans);fill:#565A40">152 best-ever pace</text>
+                <polygon points="{{ chart.area }}" fill="rgba(108,30,39,.07)"></polygon>
+                <polyline points="{{ chart.line }}" fill="none" stroke="#6C1E27" stroke-width="2.5" stroke-linejoin="round"></polyline>
+                <sc-for list="{{ chart.pts }}" as="p" hint-placeholder-count="7">
+                  <g>
+                    <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" fill="{{ p.fill }}" stroke="#6C1E27" stroke-width="2"></circle>
+                    <circle cx="{{ p.x }}" cy="110" r="26" fill="transparent" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer"></circle>
+                  </g>
+                </sc-for>
+                {{ chart.labels }}
+              </svg>
+              <div style="{{ tip.style }}">
+                <div style="font:400 20px/1 var(--font-serif)">{{ tip.value }}</div>
+                <div style="font:700 8px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:rgba(247,242,234,.6);margin-top:5px">{{ tip.label }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px">
+          <sc-for list="{{ heroMetrics }}" as="m" hint-placeholder-count="5">
+            <div onClick="{{ m.flip }}" style="{{ m.cardStyle }}" style-hover="border-color:var(--beige-deep)">
+              <div style="font:700 9px/1.3 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">{{ m.label }}</div>
+              <div style="{{ m.faceStyle }}">
+                <div style="display:flex;align-items:baseline;gap:5px;margin-top:12px">
+                  <span style="font:400 30px/1 var(--font-serif)">{{ m.value }}</span>
+                  <span style="font:400 11px/1 var(--font-sans);color:var(--ink-faint)">{{ m.unit }}</span>
+                </div>
+                <div style="display:inline-block;margin-top:10px;padding:4px 9px;border-radius:999px;background:var(--maroon-tint);font:700 9px/1 var(--font-sans);letter-spacing:.06em;color:var(--maroon)">{{ m.chip }}</div>
+              </div>
+              <div style="{{ m.whyStyle }}">{{ m.why }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;flex:0 1 320px;min-width:260px">
+            <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;box-shadow:0 2px 8px rgba(46,38,34,.07);overflow:hidden">
+              <div style="position:relative;aspect-ratio:16/10">
+                <img src="assets/pasture-horses.jpg" alt="Horses at the fence" style="width:100%;height:100%;object-fit:cover;display:block">
+                <span style="position:absolute;top:11px;left:11px;padding:5px 10px;border-radius:999px;background:rgba(46,38,34,.72);color:var(--ivory);font:700 8.5px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase">▶ Top performer</span>
+              </div>
+              <div style="padding:16px 20px 20px">
+                <div style="font:400 18px/1.25 var(--font-serif)">The horse-fence Reel</div>
+                <div style="display:flex;gap:20px;margin-top:14px">
+                  <div><div style="font:400 20px/1 var(--font-serif)">723</div><div style="font:700 8px/1.3 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px">Reached</div></div>
+                  <div><div style="font:400 20px/1 var(--font-serif)">1,200+</div><div style="font:700 8px/1.3 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px">Plays</div></div>
+                  <div><div style="font:400 20px/1 var(--font-serif)">29</div><div style="font:700 8px/1.3 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px">Likes</div></div>
+                </div>
+                <a href="#" style="display:inline-block;margin-top:16px;padding:11px 18px;border-radius:6px;background:var(--ink);color:var(--ivory);font:700 9.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase" style-hover="background:var(--maroon);color:var(--ivory)">Watch ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBeen }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:24px">
+          <div>
+            <div style="font:700 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)">Chapter by chapter</div>
+            <h1 style="font:400 34px/1.1 var(--font-serif);letter-spacing:-.02em;margin:12px 0 0">Where we've been.</h1>
+          </div>
+          <div style="display:flex;gap:6px;padding:4px;background:var(--cream);border-radius:999px">
+            <sc-for list="{{ months }}" as="m" hint-placeholder-count="3">
+              <a href="#" onClick="{{ m.go }}" style="{{ m.style }}">{{ m.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px">
+          <sc-for list="{{ baseline }}" as="b" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:18px 20px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+              <div style="font:700 9px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)">{{ b.label }}</div>
+              <div style="display:flex;align-items:baseline;gap:5px;margin-top:12px">
+                <span style="font:400 32px/1 var(--font-serif)">{{ b.value }}</span>
+                <span style="font:400 11px/1 var(--font-sans);color:var(--ink-faint)">{{ b.unit }}</span>
+              </div>
+              <div style="display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;background:var(--maroon-tint);font:700 9px/1 var(--font-sans);letter-spacing:.06em;color:var(--maroon)">{{ b.chip }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:20px 24px;box-shadow:0 2px 8px rgba(46,38,34,.07);border-left:3px solid var(--maroon);margin-bottom:22px">
+          <div style="font:400 15px/1.6 var(--font-sans);color:var(--ink)">{{ monthNote }}</div>
+        </div>
+
+        <h1 style="font:400 34px/1.1 var(--font-serif);letter-spacing:-.02em;margin:0 0 14px">Meeting recaps</h1>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:30px">
+          <sc-for list="{{ calls }}" as="c" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+              <div onClick="{{ c.toggle }}" style="display:flex;align-items:center;gap:20px;padding:16px 22px;cursor:pointer" style-hover="background:var(--ivory)">
+                <div style="width:44px;flex:none;text-align:center">
+                  <div style="font:400 22px/1 var(--font-serif);color:var(--maroon)">{{ c.day }}</div>
+                  <div style="font:700 8px/1 var(--font-sans);letter-spacing:.14em;color:var(--ink-faint);margin-top:4px">{{ c.mon }}</div>
+                </div>
+                <div style="flex:1;min-width:0">
+                  <div style="font:400 17px/1.3 var(--font-serif)">{{ c.title }}</div>
+                  <div style="font:700 9px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:6px">{{ c.who }}</div>
+                </div>
+                <span style="{{ c.caretStyle }}">▾</span>
+              </div>
+              <div style="{{ c.bodyStyle }}">
+                <div style="font:400 14px/1.65 var(--font-sans);color:var(--ink-soft);max-width:70ch">{{ c.recap }}</div>
+                <a href="#" style="display:inline-block;margin-top:12px;font:700 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase">Full notes &amp; transcript →</a>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="font:700 10px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 12px">What shipped</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <sc-for list="{{ shipped }}" as="s" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid var(--beige);border-top:3px solid var(--sage);border-radius:14px;padding:20px 22px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+              <div style="font:400 19px/1.25 var(--font-serif)">{{ s.title }}</div>
+              <div style="display:flex;flex-direction:column;gap:9px;margin-top:14px">
+                <sc-for list="{{ s.items }}" as="i" hint-placeholder-count="4">
+                  <div style="display:flex;gap:9px;font:400 13px/1.5 var(--font-sans);color:var(--ink-soft)">
+                    <span style="color:var(--sage-deep);flex:none">✓</span><span>{{ i }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isAre }}">
+      <div>
+        <div style="margin-bottom:24px">
+          <div style="font:700 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)">The scoreboard · week of July 27</div>
+          <h1 style="font:400 34px/1.1 var(--font-serif);letter-spacing:-.02em;margin:12px 0 0">Where we are.</h1>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-bottom:14px">
+          <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:22px 26px 14px;box-shadow:0 2px 8px rgba(46,38,34,.07);position:relative">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <div>
+                <div style="font:400 21px/1.2 var(--font-serif)">Accounts reached per day</div>
+                <div style="font:400 12px/1 var(--font-sans);color:var(--ink-faint);margin-top:6px">Hover any day · dotted lines are the two pace records</div>
+              </div>
+              <div style="font:400 12px/1 var(--font-sans);color:var(--ink-faint)">1,911 this week</div>
+            </div>
+            <div style="position:relative;margin-top:14px">
+              <svg viewBox="0 0 620 220" style="width:100%;display:block;overflow:visible">
+                <line x1="40" y1="196" x2="600" y2="196" stroke="#EDE3D4" stroke-width="1"></line>
+                <line x1="40" y1="{{ chart.yBase }}" x2="600" y2="{{ chart.yBase }}" stroke="#C4B4A3" stroke-width="1" stroke-dasharray="3 4"></line>
+                <line x1="40" y1="{{ chart.yPace }}" x2="600" y2="{{ chart.yPace }}" stroke="#6F7355" stroke-width="1" stroke-dasharray="3 4"></line>
+                <text x="44" y="{{ chart.yBaseT }}" style="font:400 9px var(--font-sans);fill:#8B7F73">25/day baseline</text>
+                <text x="44" y="{{ chart.yPaceT }}" style="font:400 9px var(--font-sans);fill:#565A40">152/day best-ever pace</text>
+                <polygon points="{{ chart.area }}" fill="rgba(108,30,39,.07)"></polygon>
+                <polyline points="{{ chart.line }}" fill="none" stroke="#6C1E27" stroke-width="2.5" stroke-linejoin="round"></polyline>
+                <sc-for list="{{ chart.pts }}" as="p" hint-placeholder-count="7">
+                  <g>
+                    <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" fill="{{ p.fill }}" stroke="#6C1E27" stroke-width="2"></circle>
+                    <circle cx="{{ p.x }}" cy="110" r="26" fill="transparent" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer"></circle>
+                  </g>
+                </sc-for>
+                {{ chart.labels }}
+              </svg>
+              <div style="{{ tip.style }}">
+                <div style="font:400 20px/1 var(--font-serif)">{{ tip.value }}</div>
+                <div style="font:700 8px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:rgba(247,242,234,.6);margin-top:5px">{{ tip.label }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:22px 24px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+            <div style="font:400 21px/1.2 var(--font-serif)">123 interactions</div>
+            <div style="font:400 12px/1 var(--font-sans);color:var(--ink-faint);margin-top:6px">9× the week before</div>
+            <div style="display:flex;align-items:center;gap:20px;margin-top:18px">
+              <svg viewBox="0 0 120 120" style="width:118px;height:118px;flex:none">
+                <sc-for list="{{ donut }}" as="d" hint-placeholder-count="4">
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="{{ d.color }}" stroke-width="{{ d.w }}" stroke-dasharray="{{ d.dash }}" stroke-dashoffset="{{ d.offset }}" transform="rotate(-90 60 60)" onMouseEnter="{{ d.enter }}" onMouseLeave="{{ d.leave }}" style="cursor:pointer;transition:stroke-width .15s"></circle>
+                </sc-for>
+                {{ donutLabels }}
+              </svg>
+              <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ donut }}" as="d" hint-placeholder-count="4">
+                  <div onMouseEnter="{{ d.enter }}" onMouseLeave="{{ d.leave }}" style="{{ d.rowStyle }}">
+                    <span style="{{ d.swatchStyle }}"></span>
+                    <span style="font:400 13px/1.3 var(--font-sans)"><strong style="font-weight:700">{{ d.value }}</strong> {{ d.label }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start">
+        <div style="flex:1 1 480px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+          <sc-for list="{{ scoreboard }}" as="s" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:18px 20px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+              <div style="font:700 9px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)">{{ s.label }}</div>
+              <div style="display:flex;align-items:baseline;gap:5px;margin-top:12px">
+                <span style="font:400 30px/1 var(--font-serif)">{{ s.value }}</span>
+                <span style="font:400 11px/1 var(--font-sans);color:var(--ink-faint)">{{ s.unit }}</span>
+              </div>
+              <div style="display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;background:var(--maroon-tint);font:700 9px/1 var(--font-sans);letter-spacing:.06em;color:var(--maroon)">{{ s.chip }}</div>
+            </div>
+          </sc-for>
+          <div style="grid-column:1/-1;font:400 11px/1.5 var(--font-sans);color:var(--ink-faint);margin-top:2px">Instagram insights via Windsor.ai · measured against the July 23, 2026 baseline.</div>
+        </div>
+
+        <div style="flex:0 1 320px;min-width:290px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">
+            <div style="font:700 10px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)">The account today</div>
+            <a href="https://www.instagram.com/thefarmevents" target="_blank" style="font:700 9px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase">Open ↗</a>
+          </div>
+          <div style="background:var(--ink);border-radius:38px;padding:9px;box-shadow:0 12px 30px rgba(46,38,34,.18)">
+            <div style="background:#fff;border-radius:30px;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 18px 4px;font:700 10px/1 var(--font-sans);color:var(--ink)">
+                <span>9:41</span>
+                <span style="letter-spacing:.08em;color:var(--ink-faint)">▮▮▮ ▮</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 16px 10px;border-bottom:1px solid var(--cream)">
+                <span style="font:700 13px/1 var(--font-sans);color:var(--ink)">thefarmevents</span>
+                <span style="margin-left:auto;font-size:13px;color:var(--ink-faint)">☰</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:16px;padding:14px 16px 10px">
+                <div style="width:66px;height:66px;flex:none;border-radius:999px;padding:2.5px;background:linear-gradient(135deg,var(--maroon),var(--gold-deep))">
+                  <div style="{{ igAvatar }}"></div>
+                </div>
+                <div style="flex:1;display:flex;justify-content:space-around;text-align:center">
+                  <sc-for list="{{ igStats }}" as="s" hint-placeholder-count="3">
+                    <div>
+                      <div style="font:700 15px/1 var(--font-sans);color:var(--ink)">{{ s.value }}</div>
+                      <div style="font:400 11px/1 var(--font-sans);color:var(--ink-soft);margin-top:4px">{{ s.label }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="padding:0 16px 12px">
+                <div style="font:700 12.5px/1.4 var(--font-sans);color:var(--ink)">The Farm</div>
+                <div style="font:400 12px/1.5 var(--font-sans);color:var(--ink-soft);margin-top:2px">Weddings, events &amp; lodging · Candler, NC<br>A gathering place just outside Asheville.</div>
+              </div>
+              <div style="display:flex;gap:7px;padding:0 16px 12px">
+                <div style="flex:1;text-align:center;padding:7px 0;border-radius:7px;background:var(--maroon);color:var(--ivory);font:700 11px/1 var(--font-sans)">Following</div>
+                <div style="flex:1;text-align:center;padding:7px 0;border-radius:7px;background:var(--cream);color:var(--ink);font:700 11px/1 var(--font-sans)">Message</div>
+              </div>
+              <div style="display:flex;border-top:1px solid var(--cream)">
+                <sc-for list="{{ igTabs }}" as="t" hint-placeholder-count="3">
+                  <a href="#" onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</a>
+                </sc-for>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:2px">
+                <sc-for list="{{ igGrid }}" as="g" hint-placeholder-count="9">
+                  <div style="position:relative;aspect-ratio:1">
+                    <div style="{{ g.bg }}"></div>
+                    <span style="{{ g.badgeStyle }}">{{ g.badge }}</span>
+                    <span style="{{ g.metricStyle }}">{{ g.metric }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="height:16px;display:flex;align-items:center;justify-content:center">
+                <span style="width:96px;height:4px;border-radius:999px;background:var(--beige-deep)"></span>
+              </div>
+            </div>
+          </div>
+          <div style="font:400 11px/1.5 var(--font-sans);color:var(--ink-faint);margin-top:10px">Tap a tab to switch grids. Overlays show reach per post.</div>
+        </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isGoing }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px">
+          <div>
+            <div style="font:700 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)">The road ahead</div>
+            <h1 style="font:400 34px/1.1 var(--font-serif);letter-spacing:-.02em;margin:12px 0 0">Where we're going.</h1>
+          </div>
+          <div style="display:flex;gap:6px;padding:4px;background:var(--cream);border-radius:999px">
+            <sc-for list="{{ horizons }}" as="h" hint-placeholder-count="3">
+              <a href="#" onClick="{{ h.go }}" style="{{ h.style }}">{{ h.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch;margin-bottom:14px">
+          <div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid var(--beige);border-top:3px solid var(--maroon);border-radius:14px;padding:22px 26px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+              <span style="font:400 25px/1 var(--font-serif)">{{ horizon.title }}</span>
+              <span style="font:700 9.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">{{ horizon.when }}</span>
+              <span style="font:400 16px/1 var(--font-script);color:var(--gold-deep);margin-left:auto">{{ horizon.question }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px">
+              <sc-for list="{{ goalBars }}" as="g" hint-placeholder-count="3">
+                <div>
+                  <div style="display:flex;align-items:baseline;gap:10px">
+                    <span style="font:400 15px/1.3 var(--font-serif);flex:1;min-width:0">{{ g.t }}</span>
+                    <span style="font:700 9.5px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)">{{ g.readout }}</span>
+                  </div>
+                  <div style="height:8px;border-radius:999px;background:var(--cream);margin-top:9px;overflow:hidden">
+                    <div style="{{ g.barStyle }}"></div>
+                  </div>
+                  <div style="font:400 12px/1.5 var(--font-sans);color:var(--ink-soft);margin-top:7px">{{ g.d }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="flex:0 1 340px;min-width:280px;background:#fff;border:1px solid var(--beige);border-radius:14px;padding:22px 24px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+            <div style="font:700 10px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--sage-deep)">In motion now</div>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-top:16px">
+              <sc-for list="{{ motionBars }}" as="m" hint-placeholder-count="4">
+                <div>
+                  <div style="display:flex;align-items:baseline;gap:8px">
+                    <span style="font:400 12.5px/1.4 var(--font-sans);color:var(--ink);flex:1;min-width:0">{{ m.label }}</span>
+                    <span style="font:700 9px/1 var(--font-sans);color:var(--ink-faint)">{{ m.pct }}</span>
+                  </div>
+                  <div style="height:6px;border-radius:999px;background:var(--cream);margin-top:7px;overflow:hidden">
+                    <div style="{{ m.barStyle }}"></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:22px 26px 18px;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div style="font:400 21px/1.2 var(--font-serif)">The next twelve months</div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap">
+              <sc-for list="{{ ganttLegend }}" as="l" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="{{ l.dot }}"></span>
+                  <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)">{{ l.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:210px minmax(0,1fr);gap:14px;margin-top:16px;border-bottom:1px solid var(--cream);padding-bottom:7px">
+            <span></span>
+            <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr))">
+              <sc-for list="{{ ganttMonths }}" as="m" hint-placeholder-count="12">
+                <div style="font:700 8.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);text-align:center">{{ m }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
+            <sc-for list="{{ ganttRows }}" as="r" hint-placeholder-count="8">
+              <div style="display:grid;grid-template-columns:210px minmax(0,1fr);gap:14px;align-items:center">
+                <div style="display:flex;align-items:center;gap:8px;min-width:0">
+                  <span style="{{ r.dotStyle }}"></span>
+                  <span style="font:400 12.5px/1.35 var(--font-sans);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.what }}</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:center;height:26px">
+                  <div style="{{ r.barStyle }}" title="{{ r.span }}"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px">
+          <sc-for list="{{ cadence }}" as="c" hint-placeholder-count="3">
+            <div style="background:var(--parchment);border-radius:14px;padding:18px 20px">
+              <div style="font:700 9px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--maroon)">{{ c.every }}</div>
+              <div style="font:400 17px/1.25 var(--font-serif);margin-top:9px">{{ c.title }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:24px 28px 16px;box-shadow:0 2px 8px rgba(46,38,34,.07);margin-top:14px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap">
+            <div style="font:400 21px/1.2 var(--font-serif)">Daily reach — the trajectory</div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:6px"><span style="width:16px;height:3px;background:var(--maroon)"></span><span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)">Actual</span></div>
+              <div style="display:flex;align-items:center;gap:6px"><span style="width:16px;height:3px;background:var(--sage)"></span><span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)">30-day projection</span></div>
+              <div style="display:flex;align-items:center;gap:6px"><span style="width:16px;height:3px;background:var(--maroon);opacity:.5"></span><span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)">Target</span></div>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:16px">
+            <svg viewBox="0 0 900 300" style="width:100%;display:block;overflow:visible">
+              <sc-for list="{{ traj.gridlines }}" as="g" hint-placeholder-count="4">
+                <line x1="52" y1="{{ g.y }}" x2="880" y2="{{ g.y }}" stroke="#EDE3D4" stroke-width="1"></line>
+              </sc-for>
+              <line x1="{{ traj.todayX }}" y1="20" x2="{{ traj.todayX }}" y2="252" stroke="#C4B4A3" stroke-width="1" stroke-dasharray="3 4"></line>
+              <text x="{{ traj.todayX }}" y="16" text-anchor="middle" style="font:700 9px var(--font-sans);letter-spacing:.1em;fill:#8B7F73">TODAY</text>
+              <polygon points="{{ traj.area }}" fill="rgba(108,30,39,.08)"></polygon>
+              <polyline points="{{ traj.actual }}" fill="none" stroke="#6C1E27" stroke-width="3" stroke-linejoin="round"></polyline>
+              <polyline points="{{ traj.target }}" fill="none" stroke="#6C1E27" stroke-width="2.5" stroke-dasharray="7 6" stroke-linejoin="round" opacity=".55"></polyline>
+              <polygon points="{{ traj.band }}" fill="rgba(111,115,85,.18)"></polygon>
+              <polyline points="{{ traj.projection }}" fill="none" stroke="#6F7355" stroke-width="3" stroke-dasharray="2 5" stroke-linecap="round"></polyline>
+              <sc-for list="{{ traj.pts }}" as="p" hint-placeholder-count="5">
+                <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" fill="{{ p.fill }}" stroke="{{ p.stroke }}" stroke-width="{{ p.sw }}" onClick="{{ p.go }}" style="cursor:pointer"></circle>
+              </sc-for>
+              {{ traj.labels }}
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCalendar }}">
+      <div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:20px">
+          <div style="max-width:52ch">
+            <div style="font:700 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)">Social / The Farm</div>
+            <h1 style="font:400 40px/1.05 var(--font-serif);letter-spacing:-.02em;margin:14px 0 0">Content calendar</h1>
+            <div style="font:400 15px/1.6 var(--font-sans);color:var(--ink-soft);margin-top:12px">Three weeks out — reels, carousels, stories, and feed posts. Hover a card for owner and status.</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:stretch">
+            <a href="https://app.planable.io" target="_blank" style="display:flex;align-items:center;padding:0 22px;border-radius:14px;background:var(--maroon);color:var(--ivory);font:700 10px/1.4 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;text-align:center;text-decoration:none;max-width:150px" style-hover="background:var(--maroon-deep);color:var(--ivory)">Approve in Planable ↗</a>
+            <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:18px 26px;text-align:center;box-shadow:0 2px 8px rgba(46,38,34,.07);min-width:112px">
+              <div style="font:400 30px/1 var(--font-serif)">{{ cc.planned }}</div>
+              <div style="font:700 8.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px">Planned</div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;padding:18px 26px;text-align:center;box-shadow:0 2px 8px rgba(46,38,34,.07);min-width:112px">
+              <div style="font:400 30px/1 var(--font-serif);color:var(--gold-deep)">{{ cc.needApproval }}</div>
+              <div style="font:700 8.5px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px">Need approval</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--beige);margin-bottom:16px">
+          <sc-for list="{{ cc.types }}" as="t" hint-placeholder-count="5">
+            <a href="#" onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</a>
+          </sc-for>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-left:auto">
+            <sc-for list="{{ cc.typeLegend }}" as="l" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="{{ l.dot }}"></span>
+                <span style="font:700 8.5px/1 var(--font-sans);letter-spacing:.12em;color:var(--ink-faint)">{{ l.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--beige);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(46,38,34,.07)">
+          <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:22px 26px 18px">
+            <span style="font:400 27px/1 var(--font-serif)">Aug 19 — Sep 8</span>
+            <span style="font:700 9.5px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)">Three weeks out</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:var(--maroon)">
+            <sc-for list="{{ cc.dows }}" as="d" hint-placeholder-count="7">
+              <div style="font:700 9px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);padding:13px 10px">{{ d }}</div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ cc.weeks }}" as="w" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr))">
+              <sc-for list="{{ w.cells }}" as="c" hint-placeholder-count="7">
+                <div onDragOver="{{ c.over }}" onDrop="{{ c.drop }}" style="{{ c.cellStyle }}">
+                  <div style="{{ c.dayStyle }}">{{ c.dayLabel }}</div>
+                  <a href="#" onClick="{{ c.open }}" draggable="{{ c.draggable }}" onDragStart="{{ c.dragStart }}" onDragEnd="{{ c.dragEnd }}" title="{{ c.tip }}" style="{{ c.cardStyle }}" style-hover="border-color:var(--maroon)">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 8px 5px">
+                      <span style="{{ c.typeStyle }}">{{ c.type }}</span>
+                      <span style="{{ c.statusDot }}"></span>
+                    </div>
+                    <div style="{{ c.img }}"></div>
+                    <div style="padding:8px 8px 9px">
+                      <div style="font:400 12px/1.3 var(--font-serif);color:var(--maroon)">{{ c.title }}</div>
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:8px">
+                        <span style="font:700 7.5px/1 var(--font-sans);letter-spacing:.1em;color:var(--ink-faint)">{{ c.angle }}</span>
+                        <span style="font:700 7.5px/1 var(--font-sans);letter-spacing:.1em;color:var(--maroon)">{{ c.owner }}</span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:16px 26px 18px">
+            <div style="font:400 12px/1.5 var(--font-sans);color:var(--ink-faint)">{{ cc.movedNote }}</div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap">
+              <sc-for list="{{ cc.statusLegend }}" as="l" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="{{ l.dot }}"></span>
+                  <span style="font:400 11px/1 var(--font-sans);color:var(--ink-faint)">{{ l.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div onClick="{{ modal.close }}" style="{{ modal.overlay }}">
+          <div onClick="{{ modal.stop }}" style="width:100%;max-width:760px;background:var(--ivory);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(46,38,34,.35)">
+            <div style="position:relative">
+              <div style="{{ modal.img }}"></div>
+              <a href="#" onClick="{{ modal.close }}" style="position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:999px;background:rgba(46,38,34,.7);color:var(--ivory);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none" style-hover="background:var(--maroon);color:var(--ivory)">✕</a>
+              <span style="position:absolute;top:14px;left:16px;{{ modal.typeStyle }}">{{ modal.type }}</span>
+            </div>
+
+            <div style="padding:24px 28px 8px">
+              <div style="font:700 9.5px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--maroon)">{{ modal.when }}</div>
+              <h2 style="font:400 27px/1.2 var(--font-serif);margin:12px 0 0">{{ modal.title }}</h2>
+              <div style="display:flex;gap:26px;flex-wrap:wrap;margin-top:16px;padding-bottom:18px;border-bottom:1px solid var(--beige)">
+                <sc-for list="{{ modal.meta }}" as="m" hint-placeholder-count="4">
+                  <div>
+                    <div style="font:700 8px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">{{ m.k }}</div>
+                    <div style="font:400 13.5px/1.3 var(--font-sans);color:var(--ink);margin-top:6px">{{ m.v }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="padding:0 28px">
+              <div style="font:700 9.5px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:18px 0 10px">Caption</div>
+              <div style="background:#fff;border:1px solid var(--beige);border-radius:12px;padding:16px 18px;font:400 14px/1.65 var(--font-sans);color:var(--ink);white-space:pre-wrap">{{ modal.caption }}</div>
+
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid var(--beige);border-radius:12px;padding:16px 18px;margin-top:12px">
+                <span style="{{ modal.statusStyle }}">{{ modal.statusLabel }}</span>
+                <select value="{{ modal.approver }}" onChange="{{ modal.setApprover }}" style="margin-left:auto;padding:10px 12px;border-radius:6px;border:1px solid var(--beige);background:var(--ivory);font:400 13px/1 var(--font-sans);color:var(--ink)">
+                  <sc-for list="{{ modal.approverOptions }}" as="o" hint-placeholder-count="6">
+                    <option value="{{ o.value }}">{{ o.label }}</option>
+                  </sc-for>
+                </select>
+                <a href="#" onClick="{{ modal.approve }}" style="{{ modal.approveStyle }}">{{ modal.approveLabel }}</a>
+              </div>
+
+              <div style="font:700 9.5px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:20px 0 10px">Notes &amp; requested changes</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ modal.notes }}" as="n">
+                  <div style="background:#fff;border:1px solid var(--beige);border-radius:12px;padding:13px 16px">
+                    <div style="display:flex;align-items:baseline;gap:8px">
+                      <span style="font:700 11px/1 var(--font-sans);color:var(--maroon)">{{ n.who }}</span>
+                      <span style="font:400 10.5px/1 var(--font-sans);color:var(--ink-faint)">{{ n.when }}</span>
+                    </div>
+                    <div style="font:400 13.5px/1.55 var(--font-sans);color:var(--ink-soft);margin-top:7px">{{ n.text }}</div>
+                  </div>
+                </sc-for>
+                <div style="{{ modal.noNotes }}">No notes yet. Ask for a change and it lands here.</div>
+              </div>
+
+              <div style="display:flex;gap:10px;align-items:flex-end;margin:12px 0 18px">
+                <textarea value="{{ modal.draft }}" onChange="{{ modal.setDraft }}" rows="2" placeholder="Add a note or request a change…" style="flex:1;min-width:0;resize:vertical;padding:12px 14px;border-radius:10px;border:1px solid var(--beige);background:#fff;font:400 13.5px/1.5 var(--font-sans);color:var(--ink);outline:none"></textarea>
+                <a href="#" onClick="{{ modal.addNote }}" style="padding:13px 20px;border-radius:6px;background:var(--ink);color:var(--ivory);font:700 10px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap" style-hover="background:var(--maroon);color:var(--ivory)">Add note</a>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 0 24px;border-top:1px solid var(--beige)">
+                <div style="font:400 12px/1.5 var(--font-sans);color:var(--ink-faint);flex:1;min-width:180px">Final approval and scheduling happen in Planable.</div>
+                <a href="https://app.planable.io" target="_blank" style="padding:12px 20px;border-radius:6px;background:var(--maroon);color:var(--ivory);font:700 10px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap" style-hover="background:var(--maroon-deep);color:var(--ivory)">Open in Planable ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLibrary }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px">
+          <div>
+            <div style="font:700 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)">Captured on the property</div>
+            <h1 style="font:400 34px/1.1 var(--font-serif);letter-spacing:-.02em;margin:12px 0 0">The Content Library.</h1>
+          </div>
+          <a href="#" style="padding:13px 22px;border-radius:6px;background:var(--maroon);color:var(--ivory);font:700 10px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase" style-hover="background:var(--maroon-deep);color:var(--ivory)">Open on Dropbox ↗</a>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:18px;flex-wrap:wrap">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+            <a href="#" onClick="{{ f.go }}" style="{{ f.style }}">{{ f.label }}</a>
+          </sc-for>
+          <span style="font:400 12px/1 var(--font-sans);color:var(--ink-faint);margin-left:6px">{{ libCount }}</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+          <sc-for list="{{ libItems }}" as="l">
+            <div style="border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--beige);box-shadow:0 2px 8px rgba(46,38,34,.07)" style-hover="border-color:var(--maroon)">
+              <div style="position:relative;aspect-ratio:4/3;background:var(--cream)">
+                <div style="{{ l.bg }}"></div>
+                <span style="position:absolute;top:9px;left:9px;padding:4px 9px;border-radius:999px;background:rgba(46,38,34,.72);color:var(--ivory);font:700 8px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase">{{ l.tag }}</span>
+              </div>
+              <div style="padding:12px 14px 14px">
+                <div style="font:400 15px/1.3 var(--font-serif)">{{ l.title }}</div>
+                <div style="font:700 8px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:7px">{{ l.month }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px">
+          <div style="background:var(--parchment);border-radius:14px;padding:22px 24px">
+            <div style="font:700 9px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--sage-deep)">August 26 · shoot locked</div>
+            <div style="font:400 20px/1.25 var(--font-serif);margin-top:10px">Food &amp; Beverage</div>
+            <div style="font:400 13px/1.55 var(--font-sans);color:var(--ink-soft);margin-top:7px">Plated dishes, drinks, and the hands behind them. Shoot plan ready.</div>
+            <a href="#" style="display:inline-block;margin-top:14px;font:700 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase">View the plan →</a>
+          </div>
+          <div style="background:var(--parchment);border-radius:14px;padding:22px 24px">
+            <div style="font:700 9px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--maroon)">September · planned</div>
+            <div style="font:400 20px/1.25 var(--font-serif);margin-top:10px">Accommodations</div>
+            <div style="font:400 13px/1.55 var(--font-sans);color:var(--ink-soft);margin-top:7px">Cabins, lodging, and the stay-on-property experience. Plan drafted.</div>
+            <a href="#" style="display:inline-block;margin-top:14px;font:700 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase">View the plan →</a>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isToolkit }}">
+      <div>
+        <div style="margin-bottom:24px">
+          <div style="font:700 11px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)">Built to outlast the engagement</div>
+          <h1 style="font:400 34px/1.1 var(--font-serif);letter-spacing:-.02em;margin:12px 0 0">Yours to keep.</h1>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ toolkit }}" as="t" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid var(--beige);border-top:3px solid var(--maroon);border-radius:14px;padding:26px 30px;box-shadow:0 2px 8px rgba(46,38,34,.07);display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start">
+              <div>
+                <div style="display:flex;align-items:baseline;gap:12px">
+                  <span style="font:400 16px/1 var(--font-serif);color:var(--maroon)">{{ t.num }}</span>
+                  <span style="font:400 25px/1.15 var(--font-serif)">{{ t.title }}</span>
+                </div>
+                <div style="font:400 14px/1.6 var(--font-sans);color:var(--ink-soft);margin-top:10px;max-width:60ch">{{ t.body }}</div>
+                <div style="display:flex;gap:10px;align-items:center;margin-top:18px;flex-wrap:wrap">
+                  <a href="#" style="padding:12px 20px;border-radius:6px;background:var(--ink);color:var(--ivory);font:700 10px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase" style-hover="background:var(--maroon);color:var(--ivory)">{{ t.cta }}</a>
+                  <span style="padding:8px 13px;border-radius:999px;background:var(--parchment);font:700 9px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deep)">{{ t.status }}</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--cream);padding-left:26px">
+                <sc-for list="{{ t.items }}" as="i" hint-placeholder-count="4">
+                  <div style="display:flex;gap:9px;font:400 12.5px/1.5 var(--font-sans);color:var(--ink-soft)">
+                    <span style="color:var(--maroon);flex:none">✓</span><span>{{ i }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const NAV = [
+  { id: 'now', label: "What's new", num: '01' },
+  { id: 'been', label: "Where we've been", num: '02' },
+  { id: 'are', label: 'Where we are', num: '03' },
+  { id: 'going', label: "Where we're going", num: '04' },
+  { id: 'calendar', label: 'Content Calendar', num: '05' },
+  { id: 'library', label: 'Content Library', num: '06' },
+  { id: 'toolkit', label: 'Your Toolkit', num: '07' }
+];
+
+const FEED = [
+  { date: 'Aug 22', kind: 'Numbers', title: 'Reach 273/day — 11× baseline', link: 'Scoreboard', view: 'are' },
+  { date: 'Aug 20', kind: 'Shipped', title: 'Italian Night page live — tickets selling', link: 'Open', view: 'been' },
+  { date: 'Aug 19', kind: 'Call', title: 'Sales process deep dive', link: 'Recap', view: 'been' },
+  { date: 'Aug 18', kind: 'Asset', title: 'Campaign kit — 2 sliders, flyer, QR', link: 'Open', view: 'library' },
+  { date: 'Aug 14', kind: 'Numbers', title: 'First-ever Reel — 723 reached, beats 12-mo median', link: 'Scoreboard', view: 'are' },
+  { date: 'Aug 12', kind: 'Call', title: 'Italian Night build', link: 'Recap', view: 'been' },
+  { date: 'Aug 8', kind: 'Shoot', title: 'Food & Beverage shoot locked — Aug 26', link: 'Plan', view: 'library' },
+  { date: 'Aug 5', kind: 'Call', title: 'Content review — first week live', link: 'Recap', view: 'been' },
+  { date: 'Jul 31', kind: 'Shipped', title: 'Monday recap automated in Slack', link: 'Cadence', view: 'going' },
+  { date: 'Jul 29', kind: 'Call', title: 'Team meeting — Italian Night & the road ahead', link: 'Recap', view: 'been' },
+  { date: 'Jul 21', kind: 'Shipped', title: 'Marketing brain live on Kristie’s desktop', link: 'Toolkit', view: 'toolkit' },
+  { date: 'Jul 15', kind: 'Shipped', title: 'Planable approval workflow live', link: 'Toolkit', view: 'toolkit' }
+];
+
+const PEOPLE = [
+  { id: 'kristie', name: 'Kristie', initials: 'KR', color: '#6C1E27' },
+  { id: 'melissa', name: 'Melissa', initials: 'ME', color: '#6F7355' },
+  { id: 'brenda', name: 'Brenda', initials: 'BR', color: '#A06D28' },
+  { id: 'myron', name: 'Myron', initials: 'MY', color: '#2E2622' },
+  { id: 'jjg', name: 'JJG', initials: 'JJ', color: '#8B7F73' },
+  { id: 'elizabeth', name: 'Elizabeth', initials: 'EM', color: '#4E141B' }
+];
+
+const TASKS = [
+  { key: 'ac', title: 'Claude ↔ ActiveCampaign connector — admin access', who: 'jjg', due: 'Aug 27' },
+  { key: 'shotlist', title: 'Food & Beverage shot list sign-off', who: 'melissa', due: 'Aug 24' },
+  { key: 'sept', title: 'Approve the September shoot plan', who: 'kristie', due: 'Aug 29' }
+];
+
+const KIND_COLOR = { Numbers: '#2E2622', Shipped: '#6F7355', Call: '#6C1E27', Shoot: '#A06D28', Asset: '#8B7F73' };
+
+const DAYS = [
+  { label: 'Mon', v: 118 }, { label: 'Tue', v: 196 }, { label: 'Wed', v: 342 },
+  { label: 'Thu', v: 288 }, { label: 'Fri', v: 251 }, { label: 'Sat', v: 397 }, { label: 'Sun', v: 319 }
+];
+
+const HERO = [
+  { label: 'Views', value: '6,460', unit: '', week: '+180% w/w', base: '2.8× baseline', why: 'Up from 2,311 the prior week.' },
+  { label: 'Accounts reached', value: '~1,900', unit: '', week: '26× prior week', base: '11× baseline', why: 'Cold reach — not existing followers.' },
+  { label: 'Interactions', value: '123', unit: '', week: '9× prior week', base: '9× baseline', why: 'Likes, saves, shares, comments.' },
+  { label: 'Reel reach', value: '723', unit: '', week: 'First ever', base: 'Beats 12-mo median (615)', why: 'Reels keep earning for weeks.' },
+  { label: 'Followers', value: '4,694', unit: '', week: '+9 this week', base: '+9 since baseline', why: 'Follows trail visibility by weeks.' }
+];
+
+const IG_POSTS = {
+  Grid: [
+    { img: 'assets/pasture-horses.jpg', badge: '▶', metric: '723' },
+    { img: 'assets/pizza-oven.jpg', badge: '', metric: '412' },
+    { img: 'assets/chapel-interior.jpg', badge: '', metric: '388' },
+    { img: 'assets/firepit.jpg', badge: '▶', metric: '355' },
+    { img: 'assets/gathering-place.jpg', badge: '▣', metric: '341' },
+    { img: 'assets/chef-plating.jpg', badge: '', metric: '318' },
+    { img: 'assets/pavilion-night.jpg', badge: '▶', metric: '296' },
+    { img: 'assets/golden-hour-dip.jpg', badge: '', metric: '271' },
+    { img: 'assets/autumn-centerpiece.png', badge: '▣', metric: '244' }
+  ],
+  Reels: [
+    { img: 'assets/pasture-horses.jpg', badge: '▶', metric: '1.2k' },
+    { img: 'assets/firepit.jpg', badge: '▶', metric: '640' },
+    { img: 'assets/pavilion-night.jpg', badge: '▶', metric: '512' },
+    { img: 'assets/pizza-oven.jpg', badge: '▶', metric: '498' },
+    { img: 'assets/gathering-place.jpg', badge: '▶', metric: '333' },
+    { img: 'assets/chef-plating.jpg', badge: '▶', metric: '287' }
+  ],
+  Tagged: [
+    { img: 'assets/golden-hour-dip.jpg', badge: '', metric: '204' },
+    { img: 'assets/pavilion-autumn.jpg', badge: '', metric: '188' },
+    { img: 'assets/chapel-interior.jpg', badge: '', metric: '141' }
+  ]
+};
+
+const SCOREBOARD = [
+  { label: 'First-ever Reel', value: '723', unit: 'reach', chip: 'Beats 12-mo median (615)' },
+  { label: 'Total interactions', value: '123', unit: '', chip: '9× prior week' },
+  { label: 'Shares', value: '21', unit: '', chip: 'The strongest signal' },
+  { label: 'Engagement rate', value: '3.3', unit: '%', chip: 'Holding as volume scales' }
+];
+
+const DONUT = [
+  { label: 'likes', value: 73, color: '#6C1E27' },
+  { label: 'comments & other', value: 24, color: '#D8CBBE' },
+  { label: 'shares', value: 21, color: '#6F7355' },
+  { label: 'saves', value: 5, color: '#2E2622' }
+];
+
+const BASELINE = [
+  { label: 'Posts in 90 days', value: '1', unit: '', chip: 'Effectively silent' },
+  { label: 'Reels in 12 months', value: '0', unit: '', chip: 'Biggest untapped lever' },
+  { label: 'Avg daily reach', value: '25', unit: '/day', chip: '−84% from active pace' },
+  { label: 'Followers at baseline', value: '4,685', unit: '', chip: '+43 with zero posts' }
+];
+
+const MONTHS = {
+  July: {
+    note: 'Month one was the foundation. Access unlocked, systems built, the brand loaded into every tool — and the first new content in months went live before the month was out.',
+    calls: [
+      { day: '3', mon: 'JUL', title: 'Kickoff — Brand, Story & Business', who: 'Kristie · Brenda · Myron', recap: 'The place, the people, and what the account has never done. Access list started.' },
+      { day: '8', mon: 'JUL', title: 'Marketing Deep Dive — Strategy & Access', who: 'Kristie · Brenda · Melissa', recap: 'Two-week content plan agreed, 30-day story system drafted, platform access resolved.' },
+      { day: '15', mon: 'JUL', title: 'Systems & Team Alignment', who: 'Kristie · Melissa · Myron', recap: 'Approval workflow in Planable, one Slack channel for everything, roles named.' },
+      { day: '21', mon: 'JUL', title: "The Business Brain — Claude on Kristie's Desk", who: 'Kristie · Melissa', recap: 'Brand voice, story, and standards loaded into a project on her own machine.' },
+      { day: '29', mon: 'JUL', title: 'Team Meeting — Italian Night & the Road Ahead', who: 'Kristie · Melissa · Brenda · Myron', recap: 'Italian Night scoped end to end: page, tickets, flyer, Reels. Shipping in August.' }
+    ],
+    shipped: [
+      { title: 'Foundation documents', items: ['Instagram baseline + benchmark snapshot', 'Competitive briefing — Asheville', 'Two-week content plan → 30-day story system', 'Claude brand brain, live on the desktop'] },
+      { title: 'Cameras on the property', items: ['Italian Night — photo + video', 'Sunrise shoot — Hickory Cabin', 'Cooking competition — photo + video', 'Canva brand templates'] },
+      { title: 'The rails we run on', items: ['Instagram & Facebook access resolved', 'Planable approval workflow live', 'Slack team channel', 'Weekly Monday analysis automated'] }
+    ]
+  },
+  August: {
+    note: 'Month two shipped a full campaign. Italian Night is live and selling on The Farm’s own site — marketing, design, and tickets, weeks ahead of October 1.',
+    calls: [
+      { day: '5', mon: 'AUG', title: 'Content Review — First Week Live', who: 'Kristie · Melissa', recap: 'Reach up 11× against baseline. Reels approved through the end of the month.' },
+      { day: '12', mon: 'AUG', title: 'Italian Night Build', who: 'Kristie · Brenda', recap: 'Event page, ticketing, print flyer, and QR code — all on The Farm’s own website.' },
+      { day: '19', mon: 'AUG', title: 'Sales Process Deep Dive', who: 'Kristie · Melissa', recap: 'Lead attribution mapped. ActiveCampaign automations are next once access lands.' }
+    ],
+    shipped: [
+      { title: 'Live & selling', items: ['Event website — tickets on sale', 'Reel — “Welcome to… Italian Night”', 'Reel — “Reservations are open”', 'Reel — “The magic of Italian Night”'] },
+      { title: 'The campaign kit', items: ['Two Canva sliders', 'Single-image post', 'Print-ready flyer', 'QR code for the property'] },
+      { title: 'Running quietly', items: ['Stories loaded through end of month', 'Content running 45–60 days ahead', 'Monday recap landing in Slack', 'Website heat-mapping research'] }
+    ]
+  },
+  September: {
+    note: 'Not written yet. The accommodations shoot and the first ActiveCampaign automations are the headlines we expect.',
+    calls: [],
+    shipped: []
+  }
+};
+
+const HORIZONS = {
+  '30 Days': {
+    title: '30 Days', when: 'September 22, 2026', question: 'Is the rhythm holding?',
+    goals: [
+      { t: 'Three posts a week, unbroken', d: 'Four weeks straight, at least one Reel each.', now: 4, goal: 4, unit: 'wks' },
+      { t: 'Reach past 300/day', d: 'The projection says 318 — hold the pace and it lands.', now: 273, goal: 318, unit: '/day' },
+      { t: 'Accommodations shoot in the can', d: 'September shoot done, edited, and in the library.', now: 1, goal: 3, unit: 'steps' }
+    ]
+  },
+  '90 Days': {
+    title: '90 Days', when: 'Early November 2026', question: 'Does the engine run?',
+    goals: [
+      { t: 'Zero dark weeks', d: 'Three posts a week, every week, with at least one Reel.', now: 4, goal: 13, unit: 'wks' },
+      { t: 'Reach above 150/day', d: 'The account’s best-ever pace becomes the floor.', now: 273, goal: 400, unit: '/day' },
+      { t: 'Italian Night sells out early', d: 'Marketed weeks ahead, not days.', now: 40, goal: 100, unit: '% sold' }
+    ]
+  },
+  '6 Months': {
+    title: '6 Months', when: 'January 2027', question: 'Does it run on systems?',
+    goals: [
+      { t: 'Automations working the pipeline', d: 'Follow-ups and handoffs inside ActiveCampaign.', now: 0, goal: 6, unit: 'flows' },
+      { t: 'The Community Night Playbook', d: 'A named, repeatable SOP for any event.', now: 1, goal: 5, unit: 'sections' },
+      { t: '5,200+ followers, 20+ Reels', d: 'With a growing out-of-state share.', now: 4694, goal: 5200, unit: 'followers' }
+    ]
+  },
+  '12 Months': {
+    title: '12 Months', when: 'July 2027', question: 'Does the business feel different?',
+    goals: [
+      { t: 'Kristie leads, not chases', d: 'Decisions made from dashboards, not from building posts.', now: 2, goal: 10, unit: 'hrs/wk saved' },
+      { t: 'The weight is off Melissa', d: 'Qualified, source-tagged leads arriving warm.', now: 0, goal: 100, unit: '% tagged' },
+      { t: 'Pipeline measurably attributed', d: 'The 2027/28 wedding pipeline traced to the engine.', now: 0, goal: 12, unit: 'bookings' }
+    ]
+  }
+};
+
+const IN_MOTION = [
+  { label: 'Follower automations + auto-responders', pct: 35 },
+  { label: 'Content 45–60 days ahead', pct: 80 },
+  { label: 'Website heat-mapping', pct: 45 },
+  { label: 'Italian Night Reels', pct: 60 }
+];
+
+const TRAJECTORY = [
+  { label: 'Baseline', when: 'Jul 23', value: 25, kind: 'actual' },
+  { label: 'Today', when: 'Aug 22', value: 273, kind: 'actual' },
+  { label: '30 Days', when: 'Sep 22', value: 318, kind: 'projection' },
+  { label: '90 Days', when: 'Nov 2026', value: 400, kind: 'target' },
+  { label: '6 Months', when: 'Jan 2027', value: 620, kind: 'target' },
+  { label: '12 Months', when: 'Jul 2027', value: 900, kind: 'target' }
+];
+
+const GANTT = [
+  { what: 'Italian Night campaign', start: 0, span: 2, kind: 'campaign' },
+  { what: 'Food & Beverage shoot', start: 0, span: 1, kind: 'shoot' },
+  { what: 'Accommodations shoot', start: 1, span: 1, kind: 'shoot' },
+  { what: 'ActiveCampaign automations', start: 1, span: 4, kind: 'system' },
+  { what: 'Community Night Playbook', start: 3, span: 4, kind: 'system' },
+  { what: 'Holiday + winter events push', start: 3, span: 3, kind: 'campaign' },
+  { what: 'Spring 2027 wedding pipeline', start: 6, span: 6, kind: 'campaign' },
+  { what: 'Attribution reporting live', start: 8, span: 4, kind: 'system' }
+];
+
+const TYPE_COLOR = { Reel: '#6C1E27', Carousel: '#A06D28', Story: '#2E2622', Feed: '#6F7355' };
+const STATUS_COLOR = { Scheduled: '#6F7355', 'In review': '#A06D28', 'Shoot locked': '#6C1E27', 'In Planable': '#8B7F73' };
+
+const POSTS = [
+  { date: 'Aug 19', time: '9:00 AM', caption: "Some couples walk in already knowing. They don't need convincing — they need the place that matches the picture in their head.\n\nThat's the ones we build for. Tours open for 2027 — link in bio.", type: 'Reel', title: 'For the one who knows what they want', angle: 'Identity', owner: 'Melissa', status: 'Scheduled', img: 'assets/golden-hour-dip.jpg' },
+  { date: 'Aug 21', time: '11:30 AM', caption: "Nobody remembers the linens. They remember the toast that ran long, the cousins on the dance floor, the quiet minute behind the barn.\n\nSwipe for four moments from this month.", type: 'Carousel', title: 'Couples remember the moments', angle: 'Story', owner: 'Kristie', status: 'In review', img: 'assets/pavilion-autumn.jpg' },
+  { date: 'Aug 22', time: '4:00 PM', caption: "Italian Night — Oct 1. Early access opens today for our list. Long tables, the pizza oven going all evening, and the pavilion lit up.\n\nLink in bio.", type: 'Story', title: 'Italian Night early access', angle: 'Proof', owner: 'Melissa', status: 'Scheduled', img: 'assets/pizza-oven.jpg' },
+  { date: 'Aug 24', time: '10:00 AM', caption: "A perfect venue photographs well. A gathering place makes people stay late.\n\nWe optimized for the second one.", type: 'Feed', title: 'Why gatherings beat perfect venues', angle: 'Contrarian', owner: 'Kristie', status: 'In review', img: 'assets/gathering-place.jpg' },
+  { date: 'Aug 26', time: '12:00 PM', caption: "Chef Mike plates 180 covers without raising his voice once. Two minutes inside The Farm Kitchen before service.", type: 'Reel', title: 'The Farm Kitchen magic behind-the-scenes', angle: 'Authority', owner: 'Chef Mike', status: 'Shoot locked', img: 'assets/chef-plating.jpg' },
+  { date: 'Aug 28', time: '9:30 AM', caption: "Part two of what's actually included — the pavilion, the chapel, the grounds, and the team that runs them.", type: 'Carousel', title: "What's included at The Farm (part 2)", angle: 'Authority', owner: 'Melissa', status: 'Scheduled', img: 'assets/pavilion-autumn.jpg' },
+  { date: 'Aug 29', time: '5:00 PM', caption: "Final call for Italian Night. A handful of seats left at the long tables.", type: 'Story', title: 'Italian Night final push', angle: 'Offer', owner: 'Melissa', status: 'Scheduled', img: 'assets/firepit.jpg' },
+  { date: 'Aug 30', time: '10:00 AM', caption: "Stay on the property. Cabins for the couple, the parents, the friends who drove seven hours.", type: 'Feed', title: 'Lodging: your private retreat awaits', angle: 'Story', owner: 'Kristie', status: 'In review', img: 'assets/pavilion-night.jpg' },
+  { date: 'Sep 2', time: '9:00 AM', caption: "The pavilion at blue hour, in sixty seconds. Timber, string lights, and the mountains behind it.", type: 'Reel', title: 'The Pavilion story (short form)', angle: 'Story', owner: 'Melissa', status: 'In Planable', img: 'assets/pavilion-night.jpg' },
+  { date: 'Sep 4', time: '11:00 AM', caption: "The food is the part guests text you about afterward. Here's what a tasting looks like.", type: 'Carousel', title: "Taste of The Farm: couples' faces tell the story", angle: 'Proof', owner: 'Kristie', status: 'In review', img: 'assets/golden-hour-dip.jpg' },
+  { date: 'Sep 6', time: '3:00 PM', caption: "The team sets 200 chairs before anyone arrives, then disappears for the rest of the day. That is the job.", type: 'Story', title: 'Behind the scenes: staff care', angle: 'Identity', owner: 'Melissa', status: 'Scheduled', img: 'assets/chapel-interior.jpg' },
+  { date: 'Sep 8', time: '10:00 AM', caption: "A hotel ballroom gives your team a room. We give them a hundred acres and a fire pit.", type: 'Feed', title: 'Corporate groups: not hotels anymore', angle: 'Contrarian', owner: 'Kristie', status: 'In review', img: 'assets/autumn-centerpiece.png' }
+];
+
+const GANTT_COLOR = { campaign: '#6C1E27', shoot: '#A06D28', system: '#6F7355' };
+
+const CADENCE = [
+  { every: 'Every Monday', title: 'Morning recap in Slack', body: 'Reach, engagement, wins, and what it means for the week ahead.' },
+  { every: 'Every month', title: 'Review — dashboard + video', body: 'A new chapter here, plus a walkthrough emailed and shared in Slack.' },
+  { every: 'Every month', title: 'Strategy call', body: 'Ninety minutes on priorities and the decisions worth a conversation.' }
+];
+
+const LIB = [
+  { img: 'assets/gathering-place.jpg', title: 'The Gathering Place', tag: 'Photo', month: 'July 2026' },
+  { img: 'assets/pasture-horses.jpg', title: 'The horse fence', tag: 'Reel', month: 'July 2026' },
+  { img: 'assets/pizza-oven.jpg', title: 'Italian Night', tag: 'Photo', month: 'July 2026' },
+  { img: 'assets/chapel-interior.jpg', title: 'Chapel, string lights', tag: 'Photo', month: 'July 2026' },
+  { img: 'assets/firepit.jpg', title: 'Firepit at blue hour', tag: 'Video', month: 'July 2026' },
+  { img: 'assets/chef-plating.jpg', title: 'The Farm Kitchen', tag: 'Photo', month: 'August 2026' },
+  { img: 'assets/pavilion-night.jpg', title: 'Pavilion after dark', tag: 'Video', month: 'August 2026' },
+  { img: 'assets/golden-hour-dip.jpg', title: 'Golden hour', tag: 'Photo', month: 'August 2026' },
+  { img: 'assets/pavilion-autumn.jpg', title: 'Autumn pavilion', tag: 'Photo', month: 'September 2026' },
+  { img: 'assets/autumn-centerpiece.png', title: 'Styling details', tag: 'Photo', month: 'September 2026' },
+  { img: 'assets/gathering-place.jpg', title: 'Cooking competition', tag: 'Reel', month: 'July 2026' },
+  { img: 'assets/chef-plating.jpg', title: 'Plating, close', tag: 'Video', month: 'August 2026' }
+];
+
+const TOOLKIT = [
+  { num: 'i.', title: 'The Farm Marketing Brain', body: 'A Claude project on Kristie’s own desktop, loaded with everything that makes The Farm sound like The Farm. Ask it for a caption, an email, or a gut-check.', cta: 'Open the project files ↗', status: 'Installed & in use', items: ['Brand story & voice files', 'Editorial style guide', 'Competitive analysis', 'Conversion-audit skill', 'Plain .md — portable forever'] },
+  { num: 'ii.', title: 'The Farm Design System', body: 'The complete visual language in one living document, so anything made by anyone still looks like The Farm.', cta: 'View the design system ↗', status: 'Living document', items: ['Voice, tone, and standards', 'Color palette & typography', 'Slider & post templates', 'Logo usage & photo direction'] },
+  { num: 'iii.', title: 'The Content Library', body: 'Every photo and video from every shoot on the property — organized by month, downloadable anytime.', cta: 'Open the library ↗', status: 'Growing after every shoot', items: ['Organized month by month', 'Photo, video, and Reel cuts', 'Free for web, print, and email'] }
+];
+
+class Component extends DCLogic {
+  state = { view: 'now', month: 'July', horizon: '30 Days', openCall: 0, filter: 'All', hoverDay: null, hoverSlice: null, flipped: {}, done: {}, query: '', compare: 'week', collapsed: false, logMode: 'list', calIdx: 1, assigned: {}, openAssign: null, addingTask: false, tDraft: { title: '', who: 'kristie', due: '' }, extraTasks: [], igTab: 'Grid', ccType: 'All types', ccOpen: null, ccDates: {}, ccDrag: null, ccOver: null, ccApprover: {}, ccApproved: {}, ccNotes: {}, ccDraft: '' };
+
+  navStyle(active) {
+    const c = this.state.collapsed;
+    if (c) return 'display:flex;align-items:center;justify-content:center;padding:11px 0;border-radius:8px;text-decoration:none;font:700 11px/1 var(--font-sans);letter-spacing:.04em;color:' +
+      (active ? 'var(--ivory)' : 'rgba(216,203,190,.72)') + ';background:' + (active ? 'var(--maroon)' : 'transparent');
+    return 'display:flex;align-items:center;gap:11px;padding:10px ' + (c ? '0' : '10px') + ';border-radius:8px;text-decoration:none;overflow:hidden;white-space:nowrap;' +
+      (c ? 'justify-content:center;' : '') +
+      'font:' + (active ? '700' : '400') + ' 13px/1.3 var(--font-sans);color:' +
+      (active ? 'var(--ivory)' : 'rgba(247,242,234,.62)') + ';background:' +
+      (active ? 'rgba(216,203,190,.16)' : 'transparent');
+  }
+  rail() {
+    const c = this.state.collapsed;
+    return {
+      aside: 'width:' + (c ? '68px' : '244px') + ';flex:none;background:var(--ink);display:flex;flex-direction:column;padding:' + (c ? '22px 12px' : '22px 18px') + ';position:sticky;top:0;height:100vh;transition:width .22s ease',
+      brand: 'display:flex;' + (c ? 'flex-direction:column;align-items:center;gap:12px;' : 'align-items:center;gap:8px;') + 'padding:0 ' + (c ? '0' : '8px') + ' 18px;border-bottom:1px solid rgba(216,203,190,.18)',
+      wordmark: 'display:flex;align-items:baseline;gap:6px;min-width:0;text-decoration:none;' + (c ? '' : 'flex:1'),
+      mark: c ? 'F' : 'The Farm',
+      script: c ? 'display:none' : 'font:400 14px/1 var(--font-script);color:var(--beige)',
+      toggleStyle: 'width:' + (c ? '30px' : '24px') + ';height:' + (c ? '30px' : '24px') + ';flex:none;border-radius:' + (c ? '999px' : '6px') + ';display:flex;align-items:center;justify-content:center;background:rgba(216,203,190,.14);color:var(--beige);font-size:' + (c ? '14px' : '11px') + ';text-decoration:none',
+      caret: c ? '›' : '‹',
+      toggleTitle: c ? 'Expand navigation' : 'Collapse navigation',
+      labelStyle: c ? 'display:none' : 'display:block;overflow:hidden;text-overflow:ellipsis',
+      numStyle: c ? 'font:inherit' : 'font:700 9px/1 var(--font-sans);letter-spacing:.08em;opacity:.5;width:14px;flex:none;text-align:center',
+      libBtn: 'display:block;text-align:center;padding:11px ' + (c ? '0' : '14px') + ';border-radius:999px;background:var(--beige);color:var(--ink);font:700 ' + (c ? '13px' : '9.5px') + '/1 var(--font-sans);letter-spacing:' + (c ? '0' : '.14em') + ';text-transform:uppercase;text-decoration:none',
+      libLabel: c ? '↗' : 'Open Library ↗',
+      meta: c ? 'display:none' : 'padding:0 8px;font:400 11px/1.5 var(--font-sans);color:rgba(216,203,190,.45)',
+      toggle: e => { e.preventDefault(); this.setState(s => ({ collapsed: !s.collapsed })); }
+    };
+  }
+  pillStyle(active) {
+    return 'padding:8px 16px;border-radius:999px;font:700 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;background:' +
+      (active ? 'var(--ink)' : 'transparent') + ';color:' + (active ? 'var(--ivory)' : 'var(--ink-soft)');
+  }
+  chipStyle(active) {
+    return 'padding:8px 15px;border-radius:999px;font:700 10px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:1px solid ' +
+      (active ? 'var(--maroon)' : 'var(--beige)') + ';background:' + (active ? 'var(--maroon)' : 'transparent') +
+      ';color:' + (active ? 'var(--ivory)' : 'var(--ink-soft)');
+  }
+
+  svgText(x, y, str, style, key) {
+    return React.createElement('text', { key, x, y, textAnchor: 'middle', style }, str);
+  }
+  avatar(p, size) {
+    return 'width:' + size + 'px;height:' + size + 'px;flex:none;border-radius:999px;display:flex;align-items:center;justify-content:center;font:700 8.5px/1 var(--font-sans);letter-spacing:.04em;color:#fff;background:' + p.color;
+  }
+  tasks() {
+    const st = this.state;
+    const all = TASKS.concat(st.extraTasks);
+    const doneCount = all.filter(t => st.done[t.key]).length;
+    const d = st.tDraft;
+    return {
+      progress: doneCount + ' of ' + all.length + ' done',
+      barStyle: 'height:100%;border-radius:999px;background:var(--sage);width:' + ((doneCount / all.length) * 100).toFixed(0) + '%;transition:width .2s',
+      addLabel: st.addingTask ? 'Cancel' : '+ Add task',
+      toggleAdd: e => { e.preventDefault(); this.setState(s => ({ addingTask: !s.addingTask })); },
+      addRowStyle: st.addingTask
+        ? 'display:grid;grid-template-columns:26px 1fr 190px 92px;gap:14px;align-items:center;padding:12px 2px;border-bottom:1px solid var(--ivory);background:var(--parchment)'
+        : 'display:none',
+      people: PEOPLE,
+      draftTitle: d.title, draftWho: d.who, draftDue: d.due,
+      setTitle: e => { const v = e.target.value; this.setState(s => ({ tDraft: { ...s.tDraft, title: v } })); },
+      setWho: e => { const v = e.target.value; this.setState(s => ({ tDraft: { ...s.tDraft, who: v } })); },
+      setDue: e => { const v = e.target.value; this.setState(s => ({ tDraft: { ...s.tDraft, due: v } })); },
+      addBtnStyle: 'width:28px;height:28px;flex:none;border-radius:7px;display:flex;align-items:center;justify-content:center;text-decoration:none;font:700 14px/1 var(--font-sans);background:' +
+        (d.title.trim() ? 'var(--maroon)' : 'var(--beige)') + ';color:' + (d.title.trim() ? 'var(--ivory)' : 'var(--ink-soft)'),
+      add: e => {
+        e.preventDefault();
+        const t = st.tDraft;
+        if (!t.title.trim()) return;
+        this.setState(s => ({
+          extraTasks: s.extraTasks.concat([{ key: 'x' + Date.now(), title: t.title.trim(), who: t.who, due: t.due.trim() || 'No date' }]),
+          tDraft: { title: '', who: 'kristie', due: '' }
+        }));
+      },
+      rows: all.map((t, i) => {
+        const d = !!st.done[t.key];
+        const p = PEOPLE.find(x => x.id === (st.assigned[t.key] || t.who));
+        const open = st.openAssign === i;
+        return {
+          title: t.title, due: t.due, who: p.name, initials: p.initials, mark: d ? '✓' : '',
+          boxStyle: 'width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;text-decoration:none;font:700 11px/1 var(--font-sans);border:1.5px solid ' +
+            (d ? 'var(--sage)' : 'var(--beige-deep)') + ';background:' + (d ? 'var(--sage)' : '#fff') + ';color:#fff',
+          textStyle: 'font:400 14.5px/1.4 var(--font-sans);color:var(--ink)' + (d ? ';text-decoration:line-through;opacity:.45' : ''),
+          chipStyle: 'display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid var(--beige);text-decoration:none;background:#fff',
+          avatarStyle: this.avatar(p, 22),
+          dueStyle: 'font:700 9.5px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:' + (d ? 'var(--ink-faint)' : 'var(--maroon)'),
+          toggle: e => { e.preventDefault(); this.setState(s => ({ done: { ...s.done, [t.key]: !s.done[t.key] } })); },
+          openMenu: e => { e.preventDefault(); this.setState(s => ({ openAssign: s.openAssign === i ? null : i })); },
+          menuStyle: open
+            ? 'display:flex;flex-direction:column;position:absolute;z-index:10;top:calc(100% + 6px);left:0;width:190px;padding:6px;background:#fff;border:1px solid var(--beige);border-radius:10px;box-shadow:0 6px 18px rgba(46,38,34,.14)'
+            : 'display:none',
+          options: PEOPLE.map(o => ({
+            name: o.name, initials: o.initials,
+            avatarStyle: this.avatar(o, 20),
+            style: 'display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:7px;text-decoration:none;background:' + (o.id === p.id ? 'var(--maroon-tint)' : 'transparent'),
+            pick: e => { e.preventDefault(); this.setState(s => ({ assigned: { ...s.assigned, [t.key]: o.id }, openAssign: null })); }
+          }))
+        };
+      })
+    };
+  }
+
+  ccModal() {
+    const st = this.state;
+    const i = st.ccOpen;
+    if (i == null) return { overlay: 'display:none', notes: [], approvers: [], hasNotes: false, noNotes: 'display:none' };
+    const p = POSTS[i];
+    const approver = st.ccApprover[i] || '';
+    const approved = !!st.ccApproved[i];
+    const notes = st.ccNotes[i] || [];
+    return {
+      overlay: 'position:fixed;inset:0;z-index:60;background:rgba(46,38,34,.55);display:flex;align-items:flex-start;justify-content:center;padding:44px 24px;overflow:auto',
+      close: e => { e.preventDefault(); this.setState({ ccOpen: null }); },
+      stop: e => e.stopPropagation(),
+      img: 'height:190px;background-image:url(' + p.img + ');background-size:cover;background-position:center',
+      type: p.type.toUpperCase(),
+      typeStyle: 'font:700 8.5px/1 var(--font-sans);letter-spacing:.14em;padding:6px 11px;border-radius:999px;color:#fff;background:' + TYPE_COLOR[p.type],
+      title: p.title,
+      caption: p.caption,
+      when: (st.ccDates[i] || p.date) + ', 2026 · ' + p.time,
+      meta: [
+        { k: 'Format', v: p.type },
+        { k: 'Angle', v: p.angle },
+        { k: 'Owner', v: p.owner },
+        { k: 'Status', v: approved ? 'Approved' : p.status }
+      ],
+      statusStyle: 'display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;font:700 9.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;background:' +
+        (approved ? 'rgba(111,115,85,.14)' : 'var(--maroon-tint)') + ';color:' + (approved ? 'var(--sage-deep)' : 'var(--maroon)'),
+      statusLabel: approved ? '✓ Approved by ' + (approver || 'the team') : 'Awaiting approval',
+      approver,
+      approverOptions: [{ value: '', label: 'Select approver…' }].concat(PEOPLE.map(x => ({ value: x.name, label: x.name }))),
+      setApprover: e => { const v = e.target.value; this.setState(s => ({ ccApprover: { ...s.ccApprover, [i]: v } })); },
+      approveStyle: 'padding:12px 20px;border-radius:6px;font:700 10px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;background:' +
+        (approved ? 'var(--cream)' : approver ? 'var(--maroon)' : 'var(--beige)') + ';color:' + (approved || !approver ? 'var(--ink-soft)' : 'var(--ivory)'),
+      approveLabel: approved ? 'Undo approval' : 'Approve post',
+      approve: e => {
+        e.preventDefault();
+        if (!approved && !approver) return;
+        this.setState(s => ({ ccApproved: { ...s.ccApproved, [i]: !approved } }));
+      },
+      notes,
+      hasNotes: notes.length > 0,
+      noNotes: notes.length ? 'display:none' : 'display:block;font:400 13px/1.5 var(--font-sans);color:var(--ink-faint)',
+      draft: st.ccDraft,
+      setDraft: e => this.setState({ ccDraft: e.target.value }),
+      addNote: e => {
+        e.preventDefault();
+        const text = st.ccDraft.trim();
+        if (!text) return;
+        const who = approver || 'You';
+        this.setState(s => ({
+          ccNotes: { ...s.ccNotes, [i]: (s.ccNotes[i] || []).concat([{ who, text, when: 'just now' }]) },
+          ccDraft: ''
+        }));
+      }
+    };
+  }
+
+  contentCal() {
+    const st = this.state;
+    const TYPES = ['All types', 'Reels', 'Carousels', 'Stories', 'Feed'];
+    const map = { Reels: 'Reel', Carousels: 'Carousel', Stories: 'Story', Feed: 'Feed' };
+    const want = map[st.ccType];
+    const dateOf = i => st.ccDates[i] || POSTS[i].date;
+    const byDate = {};
+    POSTS.forEach((p, i) => { byDate[dateOf(i)] = { p: p, i: i }; });
+    const dragging = st.ccDrag != null;
+
+    const startY = 2026, startM = 7, startD = 19;   // Mon Aug 19, 2026
+    const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const weeks = [];
+    for (let w = 0; w < 3; w++) {
+      const cells = [];
+      for (let i = 0; i < 7; i++) {
+        const dt = new Date(startY, startM, startD + w * 7 + i);
+        const key = MON[dt.getMonth()] + ' ' + dt.getDate();
+        const hit = byDate[key];
+        const p = hit ? hit.p : null;
+        const pi = hit ? hit.i : null;
+        const isOver = st.ccOver === key;
+        const canDrop = dragging && (!p || pi === st.ccDrag);
+        const dimmed = p && want && p.type !== want;
+        const firstOfMonth = dt.getDate() === 1;
+        cells.push({
+          dayLabel: firstOfMonth ? MON[dt.getMonth()] + ' 1' : String(dt.getDate()),
+          dayStyle: 'font:' + (p ? '700' : '400') + ' 11px/1 var(--font-sans);color:' + (p ? 'var(--ink)' : 'var(--ink-faint)'),
+          cellStyle: 'min-width:0;min-height:150px;padding:9px 8px;border-right:1px solid var(--cream);border-bottom:1px solid var(--cream);transition:background .12s;background:' +
+            (isOver && canDrop ? 'var(--maroon-tint)' : canDrop ? 'rgba(216,203,190,.28)' : p ? '#fff' : 'var(--ivory)') +
+            (canDrop ? ';outline:1px dashed var(--beige-deep);outline-offset:-3px' : ''),
+          over: e => { if (!dragging) return; e.preventDefault(); if (st.ccOver !== key) this.setState({ ccOver: key }); },
+          drop: e => {
+            e.preventDefault();
+            if (st.ccDrag == null || !canDrop) { this.setState({ ccDrag: null, ccOver: null }); return; }
+            const i = st.ccDrag;
+            this.setState(s => ({ ccDates: { ...s.ccDates, [i]: key }, ccDrag: null, ccOver: null }));
+          },
+          hasPost: !!p,
+          cardStyle: p
+            ? 'display:block;text-decoration:none;border:1px solid var(--beige);border-radius:10px;overflow:hidden;background:#fff;margin-top:7px;cursor:grab;box-shadow:0 2px 8px rgba(46,38,34,.07);opacity:' +
+              (st.ccDrag === pi ? '.4' : dimmed ? '.28' : '1') + ';border-left:3px solid ' + TYPE_COLOR[p.type]
+            : 'display:none',
+          draggable: !!p,
+          dragStart: p ? (e => { this.setState({ ccDrag: pi, ccOver: null }); }) : null,
+          dragEnd: p ? (() => this.setState({ ccDrag: null, ccOver: null })) : null,
+          type: p ? p.type.toUpperCase() : '',
+          typeStyle: p ? 'font:700 8px/1 var(--font-sans);letter-spacing:.12em;color:' + TYPE_COLOR[p.type] : '',
+          statusDot: p ? 'width:7px;height:7px;border-radius:999px;flex:none;background:' + STATUS_COLOR[p.status] : '',
+          title: p ? p.title : '',
+          img: p ? 'height:52px;background-image:url(' + p.img + ');background-size:cover;background-position:center' : '',
+          angle: p ? p.angle.toUpperCase() : '',
+          owner: p ? p.owner.toUpperCase() : '',
+          tip: p ? p.status + ' · ' + p.owner + ' — drag to reschedule' : '',
+          open: p ? (e => { e.preventDefault(); this.setState({ ccOpen: POSTS.indexOf(p), ccDraft: '' }); }) : (e => e.preventDefault())
+        });
+      }
+      weeks.push({ cells });
+    }
+    return {
+      types: TYPES.map(t => ({ label: t.toUpperCase(), style: this.chipStyle(st.ccType === t),
+        go: e => { e.preventDefault(); this.setState({ ccType: t }); } })),
+      dows: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      weeks,
+      planned: POSTS.length,
+      movedNote: Object.keys(st.ccDates).length
+        ? Object.keys(st.ccDates).length + ' rescheduled — push the changes in GHL'
+        : 'Drag any post to another day to reschedule it.',
+      needApproval: POSTS.filter(p => p.status === 'In review').length,
+      typeLegend: Object.keys(TYPE_COLOR).map(t => ({ label: t.toUpperCase(), dot: 'width:8px;height:8px;border-radius:2px;background:' + TYPE_COLOR[t] })),
+      statusLegend: Object.keys(STATUS_COLOR).map(s => ({ label: s, dot: 'width:7px;height:7px;border-radius:999px;background:' + STATUS_COLOR[s] }))
+    };
+  }
+
+  calendar(feed) {
+    const MONTHS_META = [
+      { key: 'Jul', title: 'July 2026', year: 2026, m: 6 },
+      { key: 'Aug', title: 'August 2026', year: 2026, m: 7 }
+    ];
+    const idx = Math.max(0, Math.min(MONTHS_META.length - 1, this.state.calIdx));
+    const meta = MONTHS_META[idx];
+    const first = new Date(meta.year, meta.m, 1).getDay();
+    const days = new Date(meta.year, meta.m + 1, 0).getDate();
+    const byDay = {};
+    feed.filter(it => it.date.startsWith(meta.key)).forEach(it => {
+      const d = parseInt(it.date.split(' ')[1], 10);
+      (byDay[d] = byDay[d] || []).push(it);
+    });
+    const cells = [];
+    for (let i = 0; i < first; i++) cells.push({ day: '', items: [], blank: true });
+    for (let d = 1; d <= days; d++) cells.push({ day: d, items: byDay[d] || [], blank: false });
+    while (cells.length % 7) cells.push({ day: '', items: [], blank: true });
+    const today = meta.key === 'Aug' ? 22 : null;
+    return {
+      title: meta.title,
+      dows: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      legend: Object.keys(KIND_COLOR).map(k => ({ kind: k, dot: 'width:8px;height:8px;border-radius:2px;background:' + KIND_COLOR[k] })),
+      prev: e => { e.preventDefault(); this.setState({ calIdx: Math.max(0, idx - 1) }); },
+      next: e => { e.preventDefault(); this.setState({ calIdx: Math.min(MONTHS_META.length - 1, idx + 1) }); },
+      cells: cells.map(c => {
+        const isToday = c.day === today;
+        return {
+          day: c.day,
+          style: 'min-width:0;min-height:96px;padding:7px 7px 8px;border-radius:8px;overflow:hidden;background:' +
+            (c.blank ? 'transparent' : isToday ? 'var(--maroon-tint)' : 'var(--ivory)') +
+            ';border:1px solid ' + (isToday ? 'var(--maroon)' : c.blank ? 'transparent' : 'var(--cream)'),
+          numStyle: 'font:' + (isToday ? '700' : '400') + ' 11px/1 var(--font-sans);color:' + (isToday ? 'var(--maroon)' : 'var(--ink-faint)'),
+          items: c.items.map(it => ({
+            title: it.kind + ' — ' + it.title,
+            short: it.title,
+            chipStyle: 'display:block;font:400 10px/1.4 var(--font-sans);padding:4px 7px;border-radius:5px;text-decoration:none;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:' + (KIND_COLOR[it.kind] || '#8B7F73'),
+            go: e => { e.preventDefault(); this.setState({ view: it.view }); }
+          }))
+        };
+      })
+    };
+  }
+
+  chart() {
+    const max = 450, x0 = 40, w = 560, top = 30, bot = 196;
+    const y = v => bot - (v / max) * (bot - top);
+    const pts = DAYS.map((d, i) => {
+      const cx = x0 + (i * w) / (DAYS.length - 1);
+      const hov = this.state.hoverDay === i;
+      return { x: cx.toFixed(1), y: y(d.v).toFixed(1), r: hov ? 6 : 4, fill: hov ? '#6C1E27' : '#fff', label: d.label, v: d.v,
+        enter: () => this.setState({ hoverDay: i }), leave: () => this.setState({ hoverDay: null }) };
+    });
+    return {
+      pts,
+      labels: React.createElement('g', { key: 'daylabels' }, pts.map((p, i) =>
+        this.svgText(parseFloat(p.x), 214, p.label, { font: '400 10px var(--font-sans)', fill: '#8B7F73' }, 'd' + i))),
+      line: pts.map(p => p.x + ',' + p.y).join(' '),
+      area: pts.map(p => p.x + ',' + p.y).join(' ') + ' 600,196 40,196',
+      yBase: y(25).toFixed(1), yBaseT: (y(25) - 5).toFixed(1),
+      yPace: y(152).toFixed(1), yPaceT: (y(152) - 5).toFixed(1)
+    };
+  }
+
+  renderVals() {
+    const st = this.state;
+    const md = MONTHS[st.month];
+    const chart = this.chart();
+    const hd = st.hoverDay;
+    const hp = hd == null ? null : chart.pts[hd];
+
+    const total = DONUT.reduce((a, d) => a + d.value, 0);
+    const C = 2 * Math.PI * 46;
+    let acc = 0;
+    const donut = DONUT.map((d, i) => {
+      const len = (d.value / total) * C;
+      const off = -acc;
+      acc += len;
+      const hov = st.hoverSlice === i;
+      return {
+        label: d.label, value: d.value, color: d.color,
+        w: hov ? 18 : 13, dash: len.toFixed(2) + ' ' + (C - len).toFixed(2), offset: off.toFixed(2),
+        rowStyle: 'display:flex;align-items:center;gap:9px;padding:4px 6px;border-radius:6px;cursor:pointer;background:' + (hov ? 'var(--ivory)' : 'transparent'),
+        swatchStyle: 'width:9px;height:9px;border-radius:2px;flex:none;background:' + d.color,
+        enter: () => this.setState({ hoverSlice: i }), leave: () => this.setState({ hoverSlice: null })
+      };
+    });
+    const hs = st.hoverSlice == null ? null : DONUT[st.hoverSlice];
+
+    const filtered = st.filter === 'All' ? LIB : LIB.filter(l => l.tag === st.filter);
+
+    const feed = FEED;
+
+    const sparkMax = 450;
+    const spark = DAYS.map((d, i) => (i * 260 / 6).toFixed(1) + ',' + (42 - (d.v / sparkMax) * 40).toFixed(1)).join(' ');
+
+    return {
+      rail: this.rail(),
+      navItems: NAV.map(n => ({ ...n, style: this.navStyle(st.view === n.id), go: e => { e.preventDefault(); this.setState({ view: n.id }); } })),
+      isNow: st.view === 'now', isBeen: st.view === 'been', isAre: st.view === 'are',
+      isGoing: st.view === 'going', isCalendar: st.view === 'calendar', isLibrary: st.view === 'library', isToolkit: st.view === 'toolkit',
+
+      spark,
+      heroMetrics: HERO.map((m, i) => {
+        const f = !!st.flipped[i];
+        return { ...m, chip: m.week,
+          cardStyle: 'background:#fff;border:1px solid var(--beige);border-radius:14px;padding:18px 20px;box-shadow:0 2px 8px rgba(46,38,34,.07);cursor:pointer;min-height:150px;display:flex;flex-direction:column',
+          faceStyle: f ? 'display:none' : 'display:block',
+          whyStyle: f ? 'display:block;font:400 13px/1.55 var(--font-sans);color:var(--ink-soft);margin-top:12px' : 'display:none',
+          flip: () => this.setState(s => ({ flipped: { ...s.flipped, [i]: !s.flipped[i] } })) };
+      }),
+      heroChip: '+180% week over week',
+      feed: feed.map(it => ({ ...it,
+        kindStyle: 'font:700 8.5px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:999px;text-align:center;white-space:nowrap;color:#fff;background:' + (KIND_COLOR[it.kind] || '#8B7F73'),
+        go: e => { e.preventDefault(); this.setState({ view: it.view }); } })),
+      feedCount: FEED.length + ' entries · newest first',
+      goHome: e => { e.preventDefault(); this.setState({ view: 'now' }); },
+      logModes: [{ id: 'list', label: 'List' }, { id: 'calendar', label: 'Month' }].map(m => ({
+        label: m.label, style: this.pillStyle(st.logMode === m.id),
+        go: e => { e.preventDefault(); this.setState({ logMode: m.id }); }
+      })),
+      listWrap: st.logMode === 'list' ? 'display:block' : 'display:none',
+      calWrap: st.logMode === 'calendar' ? 'display:block' : 'display:none',
+      cal: this.calendar(feed),
+      logGrid: 'display:block',
+      asks: [
+        { key: 'jjg', title: 'Introduction to JJG', who: 'Kristie' },
+        { key: 'ac', title: 'Claude ↔ ActiveCampaign connector', who: 'Kristie · JJG — admin access' }
+      ].map(a => {
+        const d = !!st.done[a.key];
+        return { ...a, mark: d ? '✓' : '',
+          rowStyle: 'display:flex;gap:12px;align-items:flex-start;padding:11px 10px;border-radius:8px;cursor:pointer',
+          boxStyle: 'width:18px;height:18px;flex:none;border-radius:4px;border:1px solid ' + (d ? 'var(--sage)' : 'var(--beige-deep)') + ';background:' + (d ? 'var(--sage)' : '#fff') + ';color:#fff;font:700 11px/17px var(--font-sans);text-align:center;margin-top:1px',
+          textStyle: 'font:400 14px/1.4 var(--font-sans);color:var(--ink)' + (d ? ';text-decoration:line-through;opacity:.5' : ''),
+          toggle: () => this.setState(s => ({ done: { ...s.done, [a.key]: !s.done[a.key] } })) };
+      }),
+      tasks: this.tasks(),
+
+      months: Object.keys(MONTHS).map(m => ({ label: m, style: this.pillStyle(st.month === m), go: e => { e.preventDefault(); this.setState({ month: m, openCall: 0 }); } })),
+      monthNote: md.note,
+      baseline: BASELINE,
+      calls: md.calls.map((c, i) => {
+        const open = st.openCall === i;
+        return { ...c,
+          caretStyle: 'font-size:11px;color:var(--ink-faint);flex:none;transition:transform .15s;transform:rotate(' + (open ? '180deg' : '0deg') + ')',
+          bodyStyle: open ? 'display:block;padding:0 22px 20px 86px;border-top:1px solid var(--ivory);padding-top:16px' : 'display:none',
+          toggle: () => this.setState(s => ({ openCall: s.openCall === i ? -1 : i })) };
+      }),
+      shipped: md.shipped,
+
+      chart, tip: {
+        style: hp
+          ? 'position:absolute;pointer-events:none;left:' + ((hp.x / 620) * 100).toFixed(2) + '%;top:' + ((hp.y / 220) * 100).toFixed(2) + '%;transform:translate(-50%,-128%);background:var(--ink);color:var(--ivory);padding:9px 13px;border-radius:8px;text-align:center;white-space:nowrap'
+          : 'display:none',
+        value: hp ? hp.v : '', label: hp ? hp.label + ' · reached' : ''
+      },
+      scoreboard: SCOREBOARD,
+      igAvatar: 'width:100%;height:100%;border-radius:999px;border:2px solid #fff;background-image:url(assets/pavilion-autumn.jpg);background-size:cover;background-position:center',
+      igStats: [{ value: '38', label: 'posts' }, { value: '4,694', label: 'followers' }, { value: '812', label: 'following' }],
+      igTabs: Object.keys(IG_POSTS).map(t => ({
+        label: t,
+        style: 'flex:1;text-align:center;padding:10px 0;text-decoration:none;font:700 9px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:' +
+          (st.igTab === t ? 'var(--ink)' : 'var(--ink-faint)') + ';border-bottom:2px solid ' + (st.igTab === t ? 'var(--ink)' : 'transparent'),
+        go: e => { e.preventDefault(); this.setState({ igTab: t }); }
+      })),
+      igGrid: IG_POSTS[st.igTab].map(p => ({
+        bg: 'position:absolute;inset:0;background-image:url(' + p.img + ');background-size:cover;background-position:center',
+        badge: p.badge,
+        badgeStyle: p.badge ? 'position:absolute;top:5px;right:6px;font-size:9px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)' : 'display:none',
+        metric: p.metric,
+        metricStyle: 'position:absolute;bottom:4px;left:5px;font:700 8.5px/1 var(--font-sans);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)'
+      })),
+      donut,
+      donutLabels: React.createElement('g', { key: 'donutlabels' }, [
+        this.svgText(60, 58, hs ? String(hs.value) : String(total), { font: '400 22px var(--font-serif)', fill: '#2E2622' }, 'dc'),
+        this.svgText(60, 72, hs ? hs.label.split(' ')[0].toUpperCase() : 'INTERACTIONS', { font: '700 7px var(--font-sans)', letterSpacing: '.14em', fill: '#8B7F73' }, 'dl')
+      ]),
+
+      horizons: Object.keys(HORIZONS).map(h => ({ label: h, style: this.pillStyle(st.horizon === h), go: e => { e.preventDefault(); this.setState({ horizon: h }); } })),
+      horizon: HORIZONS[st.horizon],
+      goalBars: HORIZONS[st.horizon].goals.map(g => {
+        const pct = Math.max(3, Math.min(100, (g.now / g.goal) * 100));
+        return { t: g.t, d: g.d,
+          readout: g.now.toLocaleString() + ' → ' + g.goal.toLocaleString() + ' ' + g.unit,
+          barStyle: 'height:100%;border-radius:999px;background:var(--maroon);width:' + pct.toFixed(1) + '%' };
+      }),
+      motionBars: IN_MOTION.map(m => ({ label: m.label, pct: m.pct + '%',
+        barStyle: 'height:100%;border-radius:999px;background:var(--sage);width:' + m.pct + '%' })),
+      traj: (() => {
+        const max = 1000, x0 = 52, w = 828, top = 40, bot = 252;
+        const y = v => bot - (v / max) * (bot - top);
+        const pts = TRAJECTORY.map((t, i) => {
+          const x = x0 + (i * w) / (TRAJECTORY.length - 1);
+          const active = t.label === st.horizon;
+          return { ...t, xn: x, yn: y(t.value), x: x.toFixed(1), y: y(t.value).toFixed(1),
+            r: active ? 8 : t.kind === 'actual' ? 6 : 5,
+            sw: active ? 3 : 2.5,
+            fill: t.kind === 'projection' ? '#6F7355' : (active || t.kind === 'actual') ? '#6C1E27' : '#fff',
+            active,
+            stroke: t.kind === 'projection' ? '#6F7355' : '#6C1E27',
+            vy: (y(t.value) - 16).toFixed(1),
+            value: t.value.toLocaleString(),
+            valueStyle: 'font:400 ' + (active ? '17px' : '14px') + ' var(--font-serif);fill:#6C1E27',
+            labelStyle: 'font:700 ' + (active ? '10.5px' : '9.5px') + ' var(--font-sans);letter-spacing:.1em;text-transform:uppercase;fill:' + (active ? '#6C1E27' : '#2E2622'),
+            go: () => { if (HORIZONS[t.label]) this.setState({ horizon: t.label }); } };
+        });
+        const actual = pts.filter(p => p.kind === 'actual');
+        const proj = pts.find(p => p.kind === 'projection');
+        const last = actual[actual.length - 1];
+        const lo = y(proj.value * 0.82), hi = y(proj.value * 1.18);
+        const labels = [];
+        [1000, 750, 500, 250, 0].forEach((v, i) => labels.push(React.createElement('text',
+          { key: 'g' + i, x: 44, y: y(v) + 3.5, textAnchor: 'end', style: { font: '400 10px var(--font-sans)', fill: '#8B7F73' } },
+          v ? v.toLocaleString() : '0')));
+        pts.forEach((p, i) => {
+          labels.push(this.svgText(p.xn, p.yn - 16, p.value, { font: '400 ' + (p.label === st.horizon ? '17px' : '14px') + ' var(--font-serif)', fill: p.kind === 'projection' ? '#565A40' : '#6C1E27' }, 'v' + i));
+          labels.push(this.svgText(p.xn, 274, p.label.toUpperCase(), { font: '700 ' + (p.label === st.horizon ? '10.5px' : '9.5px') + ' var(--font-sans)', letterSpacing: '.1em', fill: p.label === st.horizon ? '#6C1E27' : p.kind === 'projection' ? '#565A40' : '#2E2622' }, 'n' + i));
+          labels.push(this.svgText(p.xn, 290, p.when, { font: '400 9.5px var(--font-sans)', fill: '#8B7F73' }, 'w' + i));
+        });
+        return {
+          pts, labels: React.createElement('g', { key: 'trajlabels' }, labels),
+          actual: actual.map(p => p.x + ',' + p.y).join(' '),
+          projection: last.x + ',' + last.y + ' ' + proj.x + ',' + proj.y,
+          band: last.x + ',' + last.y + ' ' + proj.x + ',' + hi.toFixed(1) + ' ' + proj.x + ',' + lo.toFixed(1),
+          target: pts.filter(p => p.kind !== 'actual').map(p => p.x + ',' + p.y).join(' '),
+          area: pts.map(p => p.x + ',' + p.y).join(' ') + ' ' + pts[pts.length - 1].x + ',252 ' + x0 + ',252',
+          todayX: actual[actual.length - 1].x,
+          gridlines: [1000, 750, 500, 250, 0].map(v => ({ y: y(v).toFixed(1), ty: (y(v) + 3.5).toFixed(1), label: v ? v.toLocaleString() : '0' }))
+        };
+      })(),
+      ganttMonths: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      ganttLegend: [{ label: 'Campaign', k: 'campaign' }, { label: 'Shoot', k: 'shoot' }, { label: 'System', k: 'system' }]
+        .map(l => ({ label: l.label, dot: 'width:8px;height:8px;border-radius:2px;background:' + GANTT_COLOR[l.k] })),
+      ganttRows: GANTT.map(g => {
+        const months = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+        const end = g.start + g.span - 1;
+        return { what: g.what,
+          span: g.span === 1 ? months[g.start] : months[g.start] + ' – ' + months[end],
+          dotStyle: 'width:8px;height:8px;flex:none;border-radius:2px;background:' + GANTT_COLOR[g.kind],
+          barStyle: 'grid-column:' + (g.start + 1) + ' / span ' + g.span + ';height:16px;border-radius:5px;background:' + GANTT_COLOR[g.kind] };
+      }),
+      cadence: CADENCE,
+      cc: this.contentCal(),
+      modal: this.ccModal(),
+
+      filters: ['All', 'Photo', 'Video', 'Reel'].map(f => ({ label: f, style: this.chipStyle(st.filter === f), go: e => { e.preventDefault(); this.setState({ filter: f }); } })),
+      libItems: filtered.map(l => ({ ...l, bg: 'position:absolute;inset:0;background-image:url(' + l.img + ');background-size:cover;background-position:center' })),
+      libCount: filtered.length + ' of ' + LIB.length + ' shown',
+
+      toolkit: TOOLKIT
+    };
+  }
+}
+</script>
+</body>
+</html>

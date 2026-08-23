@@ -1,0 +1,38 @@
+:root{
+  /* base palette */
+  --maroon:#6C1E27;
+  --maroon-deep:#4E141B;
+  --maroon-tint:#F2E4E2;
+  --beige:#D8CBBE;
+  --beige-deep:#C4B4A3;
+  --ivory:#F7F2EA;
+  --cream:#F1E9DD;
+  --parchment:#EDE3D4;
+  --ink:#2E2622;
+  --ink-soft:#5A4F47;
+  --ink-faint:#8B7F73;
+  --gold:#C0873B;
+  --gold-deep:#A06D28;
+  --sage:#6F7355;
+  --sage-deep:#565A40;
+
+  /* semantic aliases */
+  --color-primary:var(--maroon);
+  --color-primary-deep:var(--maroon-deep);
+  --color-primary-tint:var(--maroon-tint);
+  --color-accent-gold:var(--gold);
+  --color-accent-gold-deep:var(--gold-deep);
+  --color-accent-sage:var(--sage);
+  --color-accent-sage-deep:var(--sage-deep);
+  --surface-page:var(--ivory);
+  --surface-alt:var(--parchment);
+  --surface-card:#fff;
+  --border-hairline:var(--beige);
+  --text-heading:var(--maroon);
+  --text-body:var(--ink);
+  --text-body-soft:var(--ink-soft);
+  --text-faint:var(--ink-faint);
+  --text-on-primary:var(--ivory);
+  --link-color:var(--maroon);
+  --link-hover-color:var(--gold-deep);
+}

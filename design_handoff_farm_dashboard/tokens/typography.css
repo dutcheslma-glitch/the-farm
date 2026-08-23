@@ -1,0 +1,22 @@
+:root{
+  --font-serif:"Playfair Display",Georgia,serif;
+  --font-sans:"Lato","Helvetica Neue",sans-serif;
+  --font-script:"Dancing Script",cursive;
+
+  --text-hero:52px;
+  --text-h2:40px;
+  --text-h3:22px;
+  --text-lead:17px;
+  --text-body:16px;
+  --text-small:13px;
+  --text-eyebrow:13px;
+
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-bold:700;
+
+  --tracking-tight:-.02em;
+  --tracking-eyebrow:.2em;
+  --leading-heading:1.1;
+  --leading-body:1.6;
+}
