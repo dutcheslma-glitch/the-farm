@@ -59,7 +59,6 @@ export const PEOPLE: Person[] = [
 ];
 
 export const TASKS: Task[] = [
-  { key: "jjg", title: "Introduction to JJG", who: "kristie", due: "Aug 25" },
   { key: "ac", title: "Claude ↔ ActiveCampaign connector — admin access", who: "jjg", due: "Aug 27" },
   { key: "shotlist", title: "Food & Beverage shot list sign-off", who: "melissa", due: "Aug 24" },
   { key: "sept", title: "Approve the September shoot plan", who: "kristie", due: "Aug 29" }
